@@ -2,6 +2,8 @@ import { GraphQLClient } from 'graphql-request';
 import ALL_PAGES_QUERY from './queries/allPages';
 import PAGE_QUERY from './queries/page';
 import SITE_QUERY from './queries/siteData';
+import FEATURED_PROJECTS_QUERY from './queries/featuredProjects';
+import INDEX_PROJECTS_QUERY from './queries/indexProjects';
 
 type Request = {
 	query: string;
@@ -28,7 +30,27 @@ export const getSiteData = async () => {
 		preview: false
 	});
 
-	return data;
+	return data?.siteInformation;
+};
+
+export const getFeaturedProjects = async () => {
+	const data = await request({
+		query: FEATURED_PROJECTS_QUERY,
+		variables: {},
+		preview: false
+	});
+
+	return data?.allFeaturedProjects;
+};
+
+export const getIndexProjects = async () => {
+	const data = await request({
+		query: INDEX_PROJECTS_QUERY,
+		variables: {},
+		preview: false
+	});
+
+	return data?.allIndexProjects;
 };
 
 export const getAllPages = async (siteId: number) => {

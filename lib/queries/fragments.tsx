@@ -1,16 +1,42 @@
-// eslint-disable-next-line jsdoc/check-indentation
-export const responsiveImageFragment: string = `
-	... on ResponsiveImage {
-		srcSet
-		webpSrcSet
-		sizes
-		src
-		width
-		height
-		aspectRatio
+export const richTextFragment = `
+	blocks
+	links
+	value
+`;
+
+export const linkFragment = `
+	useInternalLink
+	internalLink {
+		... on HomePageRecord {
+			slug
+		}
+		... on ContactPageRecord {
+			slug
+		}
+		... on CateringPageRecord {
+			slug
+		}
+		... on GalleryPageRecord {
+			slug
+		}
+		... on PageRecord {
+			slug
+		}
+	}
+	externalLink
+	linkTitle
+`;
+
+export const mediaFragment = `
+	useVideo
+	image {
+		url
 		alt
-		title
-		bgColor
-		base64
+		height
+		width
+		alt
+	}
+	video {
+		url
 	}
 `;
