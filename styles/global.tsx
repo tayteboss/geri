@@ -5,9 +5,9 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-system-white-50: ${theme.colours.systemWhite.grey50};
-		--colour-system-black-50: ${theme.colours.systemBlack.grey50};
+		--colour-red: ${theme.colours.red};
 		--font-default: ${theme.fonts.default};
+		--font-light: ${theme.fonts.light};
 		--transition-speed-default: ${theme.transitionSpeed.default};
 		--transition-speed-fast: ${theme.transitionSpeed.fast};
 		--transition-speed-extra-fast: ${theme.transitionSpeed.extraFast};
@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		scroll-behavior: smooth;
-		background: ${theme.colours.white};
+		background: ${theme.colours.black};
 		font-size: 16px;
 
 		&.no-scroll {
@@ -61,7 +61,7 @@ export const GlobalStyles = createGlobalStyle`
 	label,
 	body {
 		font-family: var(--font-default);
-		color: var(--colour-black);
+		color: var(--colour-red);
 		line-height: 1.4;
 	}
 
@@ -75,8 +75,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	a {
-		text-decoration: underline;
-		color: var(--colour-black);
+		color: var(--colour-red);
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
@@ -85,9 +84,15 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	h1,
-	.type-h1 {
+	.type-h1,
+	h2,
+	.type-h2,
+	h3,
+	.type-h3,
+	h4,
+	.type-h4, {
 		font-size: ${theme.size.h1};
-		line-height: 2.813rem;
+		line-height: 3.313rem;
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
@@ -97,58 +102,7 @@ export const GlobalStyles = createGlobalStyle`
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.h1};
-			line-height: 2.125rem;
-		}
-	}
-
-	h2,
-	.type-h2 {
-		font-size: ${theme.size.h2};
-		line-height: 2.25rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h2};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h2};
-			line-height: 1.75rem;
-		}
-	}
-
-	h3,
-	.type-h3 {
-		font-size: ${theme.size.h3};
-		line-height: 1.938rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h3};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h3};
-			line-height: 1.563rem;
-		}
-	}
-
-	h4,
-	.type-h4 {
-		font-size: ${theme.size.h4};
-		line-height: 1.563rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h4};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h4};
-			line-height: 1.375rem;
+			line-height: 2.563rem;
 		}
 	}
 
@@ -158,20 +112,23 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	div {
 		font-size: ${theme.size.body};
-		line-height: 1.938rem;
 
 		@media ${theme.mediaBreakpoints.mobile}
 		{
 			font-size: ${theme.sizeMobile.body};
-			line-height: 1.75rem;
 		}
+	}
+
+	small
+	.type-small {
+		font-size: ${theme.size.small};
 	}
 
 	.view-element-fade-in
 	{
 		opacity: 0;
 
-		transition: opacity 300ms ease;
+		transition: opacity ${theme.transitionSpeed.default} ease;
 
 		&--in-view
 		{
@@ -184,7 +141,7 @@ export const GlobalStyles = createGlobalStyle`
 		opacity: 0;
 		transform: translateY(15px);
 
-		transition: opacity 300ms cubic-bezier(0.65, 0, 0.35, 1), transform 300ms cubic-bezier(0.65, 0, 0.35, 1);
+		transition: opacity ${theme.transitionSpeed.default} cubic-bezier(0.65, 0, 0.35, 1), transform ${theme.transitionSpeed.default} cubic-bezier(0.65, 0, 0.35, 1);
 
 		&--in-view
 		{
@@ -198,7 +155,7 @@ export const GlobalStyles = createGlobalStyle`
 		transform: scale(0.95);
 		opacity: 0;
 
-		transition: opacity 300ms ease, transform 300ms ease;
+		transition: opacity ${theme.transitionSpeed.default} ease, transform ${theme.transitionSpeed.default} ease;
 
 		&--in-view
 		{
