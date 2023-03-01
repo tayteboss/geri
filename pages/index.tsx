@@ -1,18 +1,19 @@
 import styled from 'styled-components';
-import { getPage, getSiteData, getFeaturedProjects, getIndexProjects } from '../lib/datocms';
+import { getSiteData, getFeaturedProjects } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
+import FeaturedProjects from '../components/blocks/FeaturedProjects';
+import { PreviewContextWrapper } from '../shared/context/previewContext';
 
 const PageWrapper = styled.div``;
 
 type Props = {
-	data: {};
 	siteData: {
 		seoDescription: string;
 		seoImage: {
 			url: string
 		};
 	};
-	featuredProjects: {};
+	featuredProjects: [];
 };
 
 const Page = (props: Props) => {
@@ -39,6 +40,9 @@ const Page = (props: Props) => {
 				],
 			}}
 		/>
+		<PreviewContextWrapper>
+			<FeaturedProjects data={featuredProjects} />
+		</PreviewContextWrapper>
 	</PageWrapper>
 	);
 };

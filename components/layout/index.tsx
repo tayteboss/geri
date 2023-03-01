@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import Header from './Header';
 import Footer from './Footer';
 import { ReactNode } from 'react';
+import LayoutGrid from '../common/LayoutGrid';
 
-const Main = styled.main``;
+const Main = styled.main`
+	grid-column: 3 / -1;
+`;
 
 type Props = {
 	children: ReactNode;
@@ -15,11 +18,10 @@ const Layout = (props: Props) => {
 	} = props;
 
 	return (
-		<>
+		<LayoutGrid>
 			<Header />
 			<Main>{children}</Main>
-			<Footer />
-		</>
+		</LayoutGrid>
 	);
 };
 

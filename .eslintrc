@@ -16,7 +16,16 @@
 		"prettier/prettier": "error",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": 0,
-		"no-tabs": 0,
-		"arrow-body-style": "always"
+		"no-tabs": 0
+	},
+	"settings": {
+		"react": {
+		  "version": "detect"
+		},
+		"import/resolver": {
+		  "node": {
+			"extensions": [".js", ".jsx", ".ts", ".tsx"]
+		  }
+		}
 	}
 }

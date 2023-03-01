@@ -83,29 +83,6 @@ export const GlobalStyles = createGlobalStyle`
 		cursor: pointer;
 	}
 
-	h1,
-	.type-h1,
-	h2,
-	.type-h2,
-	h3,
-	.type-h3,
-	h4,
-	.type-h4, {
-		font-size: ${theme.size.h1};
-		line-height: 3.313rem;
-
-		@media ${theme.mediaBreakpoints.tabletPortrait}
-		{
-			font-size: ${theme.sizeTablet.h1};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
-			font-size: ${theme.sizeMobile.h1};
-			line-height: 2.563rem;
-		}
-	}
-
 	p,
 	.type-p,
 	a,
@@ -119,9 +96,40 @@ export const GlobalStyles = createGlobalStyle`
 		}
 	}
 
+	p,
+	.type-p,
+	a {
+		font-family: var(--font-light);
+	}
+
 	small
 	.type-small {
 		font-size: ${theme.size.small};
+	}
+
+	h1,
+	.type-h1,
+	h2,
+	.type-h2,
+	h3,
+	.type-h3,
+	h4,
+	.type-h4,
+	.type-large {
+		font-family: var(--font-default);
+		font-size: ${theme.size.h1};
+		line-height: 3.313rem;
+
+		@media ${theme.mediaBreakpoints.tabletPortrait}
+		{
+			font-size: ${theme.sizeTablet.h1};
+		}
+
+		@media ${theme.mediaBreakpoints.mobile}
+		{
+			font-size: ${theme.sizeMobile.h1};
+			line-height: 2.563rem;
+		}
 	}
 
 	.view-element-fade-in
@@ -220,5 +228,29 @@ export const GlobalStyles = createGlobalStyle`
 	iframe {
 		max-width: 100%;
 		display: block;
+	}
+
+	.infinite-scroll-loop {
+		&-outer {
+			position: relative;
+
+			&::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+			}
+		}
+
+		&-inner {
+			overflow-y: scroll;
+			scrollbar-width: none;
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
 	}
 `;
