@@ -11,12 +11,16 @@ const InfiniteScrollOuter = styled.div`
 	height: 100vh;
 	overflow: hidden;
 	mix-blend-mode: lighten;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 0 1rem;
+	}
 `;
 
 const InfiniteScrollInner = styled.div`
 	&:hover {
 		.featured-project-card {
-			opacity: 0.3;
+			opacity: 0.2;
 		}
 	}
 `;

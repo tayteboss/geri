@@ -122,11 +122,6 @@ export const GlobalStyles = createGlobalStyle`
 
 		@media ${theme.mediaBreakpoints.tabletPortrait}
 		{
-			font-size: ${theme.sizeTablet.h1};
-		}
-
-		@media ${theme.mediaBreakpoints.mobile}
-		{
 			font-size: ${theme.sizeMobile.h1};
 			line-height: 2.563rem;
 		}

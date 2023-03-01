@@ -6,7 +6,21 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { PreviewContext } from '../../../shared/context/previewContext';
 import Marquee from 'react-fast-marquee';
 
-const FeaturedProjectCardWrapper = styled.a`
+const DesktopCheck = styled.div`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
+
+const MobileCheck = styled.div`
+	display: none;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: block;
+	}
+`;
+
+const DesktopFeaturedProjectCardWrapper = styled.a`
 	text-decoration: none;
 	display: flex;
 	height: 60px;
@@ -25,8 +39,13 @@ const FeaturedProjectCardWrapper = styled.a`
 
 const ClientWrapper = styled.div`
 	width: 40%;
+	min-width: 40%;
 	padding-right: ${pxToRem(60)};
 	overflow: hidden;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
+		padding-right: ${pxToRem(16)};
+	}
 `;
 
 const ClientInner = styled.div``;
@@ -35,17 +54,59 @@ const Client = styled.div`
 	padding: 0 ${pxToRem(16)};
 	overflow: hidden;
 	display: inline-block;
-	transition: all var(--transition-speed-default) var(--transition-ease);
 	white-space: nowrap;
 	width: 100%;
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 `;
 
-const TitleWrapper = styled.div``;
+const TitleWrapper = styled.div`
+	overflow: hidden;
+`;
+
+const TitleInner = styled.div``;
 
 const Title = styled.div`
 	padding: 0 ${pxToRem(16)};
 	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	width: 100%;
+
 	transition: all var(--transition-speed-default) var(--transition-ease);
+`;
+
+const MobileFeaturedProjectCardWrapper = styled.a`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		text-decoration: none;
+		display: flex;
+
+		&:hover, &:active {
+			opacity: 1 !important;
+	
+			.featured-client,
+			.featured-title {
+				background: var(--colour-red);
+				color: var(--colour-black);
+				border-radius: 100px;
+			}
+		}
+	}
+`;
+
+const MobileTitleWrapper = styled.div`
+	width: 100%;
+`;
+
+const MobileClient = styled.div`
+	white-space: nowrap;
+	width: 100%;
+	overflow: hidden;
+	margin-right: ${pxToRem(16)};
+`;
+
+const MobileTitle = styled.span`
+	opacity: 0;
 `;
 
 type Props = {
@@ -57,13 +118,17 @@ const FeaturedProjectCard = (props: Props) => {
 		data
 	} = props;
 
-	const [useMarquee, setUseMarquee] = useState<boolean>(false);
+	const [useMobileMarquee, setUseMobileMarquee] = useState<boolean>(false);
+	const [useClientMarquee, setUseClientMarquee] = useState<boolean>(false);
+	const [useTitleMarquee, setUseTitleMarquee] = useState<boolean>(false);
 	const [isHovered, setIsHovered] = useState<boolean>(false);
 	const [outerHover, setOuterHover] = useState<boolean>(false);
 
 	const { setPreviewData } = useContext(PreviewContext);
 
-	const containerRef = useRef<HTMLDivElement>(null);
+	const titleContainerRef = useRef<HTMLDivElement>(null);
+	const clientContainerRef = useRef<HTMLDivElement>(null);
+	const mobileContainerRef = useRef<HTMLDivElement>(null);
 
 	const handleOuterMouseOver = () => {
 		setPreviewData(data?.media);
@@ -76,85 +141,169 @@ const FeaturedProjectCard = (props: Props) => {
 	};
 
 	useEffect(() => {
-		const textRef = containerRef?.current;
+		const mobileTextRef = mobileContainerRef?.current;
+		const clientTextRef = clientContainerRef?.current;
+		const textRef = titleContainerRef?.current;
 
-		if (!textRef) return;
+		console.log('mobileContainerRef', mobileContainerRef);
+
+		if (!clientTextRef || !textRef || !mobileTextRef) return;
+
+		if (mobileTextRef?.scrollWidth > mobileTextRef?.offsetWidth) {
+			setUseMobileMarquee(true);
+		}
+
+		if (clientTextRef?.scrollWidth > clientTextRef?.offsetWidth) {
+			setUseClientMarquee(true);
+		}
 
 		if (textRef?.scrollWidth > textRef?.offsetWidth) {
-			setUseMarquee(true);
+			setUseTitleMarquee(true);
 		}
 	}, []);
 
 	return (
-		<Link href={data?.vimeoLink} passHref>
-			<FeaturedProjectCardWrapper
-				className="featured-project-card"
-				target="_blank"
-				onMouseOver={() => handleOuterMouseOver()}
-				onMouseOut={() => handleOuterMouseOut()}
-			>
-				{useMarquee && (
-					<>
-						{outerHover && (
-							<ClientWrapper
-								onMouseOver={() => setIsHovered(true)}
-								onMouseOut={() => setIsHovered(false)}
-							>
-								<ClientInner className="featured-client">
-									{data?.client && (
-										<Marquee
-											gradient={false}
-											speed={75}
-											play={isHovered}
-										>
+		<>
+			<DesktopCheck>
+				<Link href={data?.vimeoLink} passHref>
+					<DesktopFeaturedProjectCardWrapper
+						className="featured-project-card"
+						target="_blank"
+						onMouseOver={() => handleOuterMouseOver()}
+						onMouseOut={() => handleOuterMouseOut()}
+					>
+						{useClientMarquee && (
+							<>
+								{outerHover && (
+									<ClientWrapper
+										onMouseOver={() => setIsHovered(true)}
+										onMouseOut={() => setIsHovered(false)}
+									>
+										<ClientInner className="featured-client">
+											{data?.client && (
+												<Marquee
+													gradient={false}
+													speed={75}
+													play={isHovered}
+												>
+													<Client
+														className="type-large"
+														ref={clientContainerRef}
+													>
+														{data?.client}
+													</Client>
+												</Marquee>
+											)}
+										</ClientInner>
+									</ClientWrapper>
+								)}
+								{!outerHover && (
+									<ClientWrapper>
+										{data?.client && (
 											<Client
-												className="type-large"
-												ref={containerRef}
+												className="type-large featured-client"
+												ref={clientContainerRef}
 											>
 												{data?.client}
 											</Client>
-										</Marquee>
-									)}
-								</ClientInner>
-							</ClientWrapper>
+										)}
+									</ClientWrapper>
+								)}
+							</>
 						)}
-						{!outerHover && (
+						{!useClientMarquee && (
 							<ClientWrapper>
 								{data?.client && (
 									<Client
 										className="type-large featured-client"
-										ref={containerRef}
+										ref={clientContainerRef}
 									>
 										{data?.client}
 									</Client>
 								)}
 							</ClientWrapper>
 						)}
-					</>
-				)}
-				{!useMarquee && (
-					<ClientWrapper>
-						{data?.client && (
-							<Client
-								className="type-large featured-client"
-								ref={containerRef}
-							>
-								{data?.client}
-							</Client>
+						{useTitleMarquee && (
+							<>
+								{outerHover && (
+									<TitleWrapper
+										onMouseOver={() => setIsHovered(true)}
+										onMouseOut={() => setIsHovered(false)}
+									>
+										<TitleInner className="featured-title">
+											{data?.title && (
+												<Marquee
+													gradient={false}
+													speed={75}
+													play={isHovered}
+												>
+													<Title
+														className="type-large"
+														ref={titleContainerRef}
+													>
+														{data?.title}
+													</Title>
+												</Marquee>
+											)}
+										</TitleInner>
+									</TitleWrapper>
+								)}
+								{!outerHover && (
+									<TitleWrapper>
+										{data?.title && (
+											<Title
+												className="type-large featured-title"
+												ref={titleContainerRef}
+											>
+												{data?.title}
+											</Title>
+										)}
+									</TitleWrapper>
+								)}
+							</>
 						)}
-					</ClientWrapper>
-				)}
-				<TitleWrapper>
-					{data?.title && (
-						<Title
-							className="type-large featured-title"
-						>
-							{data?.title}
-						</Title>
-					)}
-				</TitleWrapper>
-			</FeaturedProjectCardWrapper>
-		</Link>
+						{!useTitleMarquee && (
+							<TitleWrapper>
+								{data?.title && (
+									<Title
+										className="type-large featured-title"
+										ref={titleContainerRef}
+									>
+										{data?.title}
+									</Title>
+								)}
+							</TitleWrapper>
+						)}
+					</DesktopFeaturedProjectCardWrapper>
+				</Link>
+			</DesktopCheck>
+			<MobileCheck>
+				<Link href={data?.vimeoLink} passHref>
+					<MobileFeaturedProjectCardWrapper target="_blank">
+						<MobileTitleWrapper>
+							{useMobileMarquee && (
+								<Marquee
+									gradient={false}
+									speed={30}
+								>
+									<MobileClient
+										className="type-large"
+										ref={mobileContainerRef}
+									>
+										{data?.client}
+									</MobileClient>
+								</Marquee>
+							)}
+							{!useMobileMarquee && (
+								<MobileClient className="type-large" ref={mobileContainerRef}>
+									{data?.client}
+								</MobileClient>
+							)}
+						</MobileTitleWrapper>
+					</MobileFeaturedProjectCardWrapper>
+				</Link>
+			</MobileCheck>
+		</>
 	);
 };
 

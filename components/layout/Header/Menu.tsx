@@ -7,6 +7,16 @@ const MenuWrapper = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		position: fixed;
+		bottom: 16px;
+		left: 16px;
+
+		.primary-link {
+			font-size: ${pxToRem(24)};
+		}
+	}
+
 	.primary-link {
 		margin-bottom: ${pxToRem(4)};
 	}

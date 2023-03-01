@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import startTime from '../../../utils/time';
 
-const LocationWrapper = styled.div``;
+const LocationWrapper = styled.div`
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		display: none;
+	}
+`;
 
 const P = styled.p``;
 

@@ -14,6 +14,16 @@ const HeaderWrapper = styled.header`
 	min-height: 100vh;
 	position: sticky;
 	top: 0;
+	left: 0;
+	z-index: 100;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+		min-height: unset;
+		align-items: center;
+		position: fixed;
+		width: 100%;
+	}
 `;
 
 const Header = () => {

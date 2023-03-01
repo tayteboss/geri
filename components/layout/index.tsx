@@ -6,6 +6,10 @@ import LayoutGrid from '../common/LayoutGrid';
 
 const Main = styled.main`
 	grid-column: 3 / -1;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+	}
 `;
 
 type Props = {
