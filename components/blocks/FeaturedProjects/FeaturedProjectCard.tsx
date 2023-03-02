@@ -46,6 +46,18 @@ const ClientWrapper = styled.div`
 	width: 40%;
 	min-width: 40%;
 	overflow: hidden;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 20px;
+		background: rgb(0,0,0);
+		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
 		padding-right: ${pxToRem(16)};
