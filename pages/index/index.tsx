@@ -47,7 +47,24 @@ const Page = (props: Props) => {
 
 export async function getStaticProps() {
 	const siteData = await getSiteData();
-	const indexProjects = await getIndexProjects();
+	const rawIndexProjects = await getIndexProjects();
+
+	let indexProjects = {};
+
+	rawIndexProjects.forEach((item: { client: string }) => {
+		const client = item.client;
+		const arrName = client.split(' ');
+		const firstLetter = arrName[arrName.length - 1].charAt(0);
+
+		if (!indexProjects[firstLetter]) {
+			indexProjects[firstLetter] = {
+				letter: firstLetter,
+				people: []
+			};
+		}
+
+		indexProjects[firstLetter].people.push({ ...item });
+	});
 
 	return {
 		props: {

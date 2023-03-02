@@ -51,6 +51,8 @@ export async function getStaticProps() {
 	const siteData = await getSiteData();
 	const featuredProjects = await getFeaturedProjects();
 
+	featuredProjects.sort((a: { client: string }, b: { client: string }) => a.client.localeCompare(b.client));
+
 	return {
 		props: {
 			siteData,
