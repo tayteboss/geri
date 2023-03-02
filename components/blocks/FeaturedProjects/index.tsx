@@ -73,13 +73,13 @@ const FeaturedProjectsWrapper = ({
 				{Array(surroundingBackup)
 					.fill(0)
 					.map((index) => (
-						<FeaturedProjectCardsWrapper key={`${index}-a`}>{children}</FeaturedProjectCardsWrapper>
+						<FeaturedProjectCardsWrapper key={Math.floor(Math.random() * 1000)}>{children}</FeaturedProjectCardsWrapper>
 					))}
 				<FeaturedProjectCardsWrapper ref={contentRef}>{children}</FeaturedProjectCardsWrapper>
 				{Array(surroundingBackup)
 					.fill(0)
 					.map((index) => (
-						<FeaturedProjectCardsWrapper key={`${index}-c`}>{children}</FeaturedProjectCardsWrapper>
+						<FeaturedProjectCardsWrapper key={Math.floor(Math.random() * 1000)}>{children}</FeaturedProjectCardsWrapper>
 					))}
 			</InfiniteScrollInner>
 		</InfiniteScrollOuter>

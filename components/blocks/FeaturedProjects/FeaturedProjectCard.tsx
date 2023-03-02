@@ -6,6 +6,10 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { PreviewContext } from '../../../shared/context/previewContext';
 import Marquee from 'react-fast-marquee';
 
+type StyledProps = {
+	$isMarquee?: boolean;
+}
+
 const DesktopCheck = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		display: none;
@@ -24,6 +28,7 @@ const DesktopFeaturedProjectCardWrapper = styled.a`
 	text-decoration: none;
 	display: flex;
 	height: 60px;
+	column-gap: ${pxToRem(60)};
 
 	&:hover {
 		opacity: 1 !important;
@@ -40,7 +45,6 @@ const DesktopFeaturedProjectCardWrapper = styled.a`
 const ClientWrapper = styled.div`
 	width: 40%;
 	min-width: 40%;
-	padding-right: ${pxToRem(60)};
 	overflow: hidden;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
@@ -50,10 +54,10 @@ const ClientWrapper = styled.div`
 
 const ClientInner = styled.div``;
 
-const Client = styled.div`
+const Client = styled.div<StyledProps>`
 	padding: 0 ${pxToRem(16)};
 	overflow: hidden;
-	display: inline-block;
+	display: ${(props) => props.$isMarquee ? 'inline-block' : 'inline'};
 	white-space: nowrap;
 	width: 100%;
 
@@ -66,9 +70,9 @@ const TitleWrapper = styled.div`
 
 const TitleInner = styled.div``;
 
-const Title = styled.div`
+const Title = styled.div<StyledProps>`
 	padding: 0 ${pxToRem(16)};
-	display: inline-block;
+	display: ${(props) => props.$isMarquee ? 'inline-block' : 'inline'};
 	overflow: hidden;
 	white-space: nowrap;
 	width: 100%;
@@ -105,10 +109,6 @@ const MobileClient = styled.div`
 	margin-right: ${pxToRem(16)};
 `;
 
-const MobileTitle = styled.span`
-	opacity: 0;
-`;
-
 type Props = {
 	data: FeaturedProjectsType;
 }
@@ -118,9 +118,9 @@ const FeaturedProjectCard = (props: Props) => {
 		data
 	} = props;
 
-	const [useMobileMarquee, setUseMobileMarquee] = useState<boolean>(false);
-	const [useClientMarquee, setUseClientMarquee] = useState<boolean>(false);
-	const [useTitleMarquee, setUseTitleMarquee] = useState<boolean>(false);
+	const [useMobileMarquee, setUseMobileMarquee] = useState<boolean>(true);
+	const [useClientMarquee, setUseClientMarquee] = useState<boolean>(true);
+	const [useTitleMarquee, setUseTitleMarquee] = useState<boolean>(true);
 	const [isHovered, setIsHovered] = useState<boolean>(false);
 	const [outerHover, setOuterHover] = useState<boolean>(false);
 
@@ -141,25 +141,38 @@ const FeaturedProjectCard = (props: Props) => {
 	};
 
 	useEffect(() => {
-		const mobileTextRef = mobileContainerRef?.current;
-		const clientTextRef = clientContainerRef?.current;
-		const textRef = titleContainerRef?.current;
+		setTimeout(() => {
+			const mobileTextRef = mobileContainerRef?.current;
+			const clientTextRef = clientContainerRef?.current;
+			const textRef = titleContainerRef?.current;
 
-		console.log('mobileContainerRef', mobileContainerRef);
+			if (!clientTextRef || !textRef || !mobileTextRef) return;
 
-		if (!clientTextRef || !textRef || !mobileTextRef) return;
+			if (mobileTextRef?.scrollWidth > mobileTextRef?.offsetWidth) {
+				setUseMobileMarquee(true);
+			}
 
-		if (mobileTextRef?.scrollWidth > mobileTextRef?.offsetWidth) {
-			setUseMobileMarquee(true);
-		}
+			if (mobileTextRef?.scrollWidth <= mobileTextRef?.offsetWidth) {
+				setUseMobileMarquee(false);
+			}
 
-		if (clientTextRef?.scrollWidth > clientTextRef?.offsetWidth) {
-			setUseClientMarquee(true);
-		}
+			if (clientTextRef?.scrollWidth > clientTextRef?.offsetWidth) {
+				setUseClientMarquee(true);
+			}
 
-		if (textRef?.scrollWidth > textRef?.offsetWidth) {
-			setUseTitleMarquee(true);
-		}
+			if (clientTextRef?.scrollWidth <= clientTextRef?.offsetWidth) {
+				setUseClientMarquee(false);
+			}
+
+			if (textRef?.scrollWidth > textRef?.offsetWidth) {
+				setUseTitleMarquee(true);
+			}
+
+			if (textRef?.scrollWidth <= textRef?.offsetWidth) {
+				setUseTitleMarquee(false);
+			}
+		}, 250);
+
 	}, []);
 
 	return (
@@ -189,6 +202,7 @@ const FeaturedProjectCard = (props: Props) => {
 													<Client
 														className="type-large"
 														ref={clientContainerRef}
+														$isMarquee={useClientMarquee}
 													>
 														{data?.client}
 													</Client>
@@ -203,6 +217,7 @@ const FeaturedProjectCard = (props: Props) => {
 											<Client
 												className="type-large featured-client"
 												ref={clientContainerRef}
+												$isMarquee={useClientMarquee}
 											>
 												{data?.client}
 											</Client>
@@ -217,6 +232,7 @@ const FeaturedProjectCard = (props: Props) => {
 									<Client
 										className="type-large featured-client"
 										ref={clientContainerRef}
+										$isMarquee={useClientMarquee}
 									>
 										{data?.client}
 									</Client>
@@ -240,6 +256,7 @@ const FeaturedProjectCard = (props: Props) => {
 													<Title
 														className="type-large"
 														ref={titleContainerRef}
+														$isMarquee={useTitleMarquee}
 													>
 														{data?.title}
 													</Title>
@@ -254,6 +271,7 @@ const FeaturedProjectCard = (props: Props) => {
 											<Title
 												className="type-large featured-title"
 												ref={titleContainerRef}
+												$isMarquee={useTitleMarquee}
 											>
 												{data?.title}
 											</Title>
@@ -268,6 +286,7 @@ const FeaturedProjectCard = (props: Props) => {
 									<Title
 										className="type-large featured-title"
 										ref={titleContainerRef}
+										$isMarquee={useTitleMarquee}
 									>
 										{data?.title}
 									</Title>
@@ -295,7 +314,8 @@ const FeaturedProjectCard = (props: Props) => {
 								</Marquee>
 							)}
 							{!useMobileMarquee && (
-								<MobileClient className="type-large" ref={mobileContainerRef}>
+								<MobileClient
+									className="type-large"ref={mobileContainerRef}>
 									{data?.client}
 								</MobileClient>
 							)}

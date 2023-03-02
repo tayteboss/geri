@@ -88,6 +88,8 @@ const FeaturedPreviewCard = () => {
 
 	const videoRef = useRef<HTMLVideoElement>(null);
 
+	if (!previewData) return;
+
 	return (
 		<AnimatePresence>
 			{previewData && (
@@ -125,7 +127,8 @@ const FeaturedPreviewCard = () => {
 									ref={videoRef}
 									preload="auto"
 									onLoadedData={() => setIsLoading(false)}
-									poster={previewData[0].placeholderImage?.url} 
+									poster={previewData[0].placeholderImage?.url}
+									key={previewData[0].placeholderImage?.url}
 								>
 									<source src={previewData[0].webmVideoFile?.url} type="video/webm" />
 									<source src={previewData[0].mp4VideoFile?.url} type="video/mp4" />
