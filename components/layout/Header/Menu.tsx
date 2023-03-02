@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import PrimaryLink from '../../elements/PrimaryLink';
 import pxToRem from '../../../utils/pxToRem';
+import useActiveLink from '../../../hooks/useActiveLink';
 
 const MenuWrapper = styled.div`
 	display: flex;
@@ -23,11 +24,13 @@ const MenuWrapper = styled.div`
 `;
 
 const Menu = () => {
+	const activeLink: string = useActiveLink();
+
 	return (
 		<MenuWrapper>
-			<PrimaryLink title="Featured" link="/" isActiveLink={true} />
-			<PrimaryLink title="Index" link="/index" isActiveLink={false} />
-			<PrimaryLink title="Information" link="/information" isActiveLink={false} />
+			<PrimaryLink title="Featured" link="/" isActiveLink={activeLink === 'Home'} />
+			<PrimaryLink title="Index" link="/index" isActiveLink={activeLink === 'Index'} />
+			<PrimaryLink title="Information" link="/information" isActiveLink={activeLink === 'Information'} />
 		</MenuWrapper>
 	);
 };

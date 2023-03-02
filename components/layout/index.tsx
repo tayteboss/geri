@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Header from './Header';
-import Footer from './Footer';
 import { ReactNode } from 'react';
 import LayoutGrid from '../common/LayoutGrid';
 

@@ -9,9 +9,9 @@ type StyledProps = {
 
 const PrimaryLinkWrapper = styled.a<StyledProps>`
 	padding: 0 8px;
-	background: ${(props) => props.$isActiveLink ? 'var(--colour-red)' : props.$isHovered ? 'var(--colour-red)' : 'var(--colour-black)'};
-	color: ${(props) => props.$isActiveLink ? 'var(--colour-black)' : props.$isHovered ? 'var(--colour-black)' : 'var(--colour-red)'};
-	border: 1px solid var(--colour-red);
+	background: ${(props) => props.$isActiveLink ? 'var(--fg)' : props.$isHovered ? 'var(--fg)' : 'var(--bg)'};
+	color: ${(props) => props.$isActiveLink ? 'var(--bg)' : props.$isHovered ? 'var(--bg)' : 'var(--fg)'};
+	border: 1px solid var(--fg);
 	border-radius: 100px;
 	text-decoration: none;
 

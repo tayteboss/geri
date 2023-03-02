@@ -46,6 +46,17 @@ const App = (props: Props) => {
 	const router= useRouter();
 	const routerEvents = router.events;
 
+	const handleBgColour = (url: string): void => {
+		if (url === '/') {
+			document.documentElement.style.setProperty('--bg', `var(--colour-black)`);
+			document.documentElement.style.setProperty('--fg', `var(--colour-red)`);
+		}
+		if (url === '/index') {
+			document.documentElement.style.setProperty('--bg', `var(--colour-red)`);
+			document.documentElement.style.setProperty('--fg', `var(--colour-black)`);
+		}
+	}
+
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
 	};
@@ -53,6 +64,17 @@ const App = (props: Props) => {
 	use1vh();
 
 	useEffect(() => {
+		routerEvents.on('routeChangeStart', (url) => {
+			handleBgColour(url);
+		});
+	}, [routerEvents]);
+
+	useEffect(() => {
+		handleBgColour(router.asPath);
+
+		console.log('router', router);
+		
+
 		const hasCookies = Cookies.get('visited');
 
 		if (hasCookies) {

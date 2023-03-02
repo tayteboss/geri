@@ -38,7 +38,7 @@ export const GlobalStyles = createGlobalStyle`
 
 	html {
 		scroll-behavior: smooth;
-		background: ${theme.colours.black};
+		background: var(--bg);
 		font-size: 16px;
 
 		&.no-scroll {
@@ -61,7 +61,7 @@ export const GlobalStyles = createGlobalStyle`
 	label,
 	body {
 		font-family: var(--font-default);
-		color: var(--colour-red);
+		color: var(--fg);
 		line-height: 1.4;
 	}
 
@@ -75,7 +75,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	a {
-		color: var(--colour-red);
+		color: var(--fg);
 		transition: all var(--transition-speed-default) var(--transition-ease);
 	}
 
@@ -89,6 +89,7 @@ export const GlobalStyles = createGlobalStyle`
 	button,
 	div {
 		font-size: ${theme.size.body};
+		color: var(--fg);
 
 		@media ${theme.mediaBreakpoints.mobile}
 		{
