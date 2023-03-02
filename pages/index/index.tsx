@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { getSiteData, getIndexProjects } from '../../lib/datocms';
 import { NextSeo } from 'next-seo';
+import IndexProjects from '../../components/blocks/IndexProjects';
+import Footer from '../../components/layout/Footer';
 
 const PageWrapper = styled.div`
 	background: var(--colour-red);
@@ -22,9 +24,6 @@ const Page = (props: Props) => {
 		indexProjects,
 	} = props;
 
-	console.log('siteData', siteData);
-	console.log('featuredProjects', indexProjects);
-
 	return (
 	<PageWrapper>
 		<NextSeo
@@ -40,7 +39,8 @@ const Page = (props: Props) => {
 				],
 			}}
 		/>
-		Index
+		<IndexProjects data={indexProjects} />
+		<Footer showInfo />
 	</PageWrapper>
 	);
 };
@@ -49,7 +49,34 @@ export async function getStaticProps() {
 	const siteData = await getSiteData();
 	const rawIndexProjects = await getIndexProjects();
 
-	let indexProjects = {};
+	let indexProjects: any = {
+		A: { letter: 'A', client: [] },
+		B: { letter: 'B', client: [] },
+		C: { letter: 'C', client: [] },
+		D: { letter: 'D', client: [] },
+		E: { letter: 'E', client: [] },
+		F: { letter: 'F', client: [] },
+		G: { letter: 'G', client: [] },
+		H: { letter: 'H', client: [] },
+		I: { letter: 'I', client: [] },
+		J: { letter: 'J', client: [] },
+		K: { letter: 'K', client: [] },
+		L: { letter: 'L', client: [] },
+		M: { letter: 'M', client: [] },
+		N: { letter: 'N', client: [] },
+		O: { letter: 'O', client: [] },
+		P: { letter: 'P', client: [] },
+		Q: { letter: 'Q', client: [] },
+		R: { letter: 'R', client: [] },
+		S: { letter: 'S', client: [] },
+		T: { letter: 'T', client: [] },
+		U: { letter: 'U', client: [] },
+		V: { letter: 'V', client: [] },
+		W: { letter: 'W', client: [] },
+		X: { letter: 'X', client: [] },
+		Y: { letter: 'Y', client: [] },
+		Z: { letter: 'Z', client: [] },
+	};
 
 	rawIndexProjects.forEach((item: { client: string }) => {
 		const client = item.client;
@@ -59,12 +86,14 @@ export async function getStaticProps() {
 		if (!indexProjects[firstLetter]) {
 			indexProjects[firstLetter] = {
 				letter: firstLetter,
-				people: []
+				client: []
 			};
 		}
 
-		indexProjects[firstLetter].people.push({ ...item });
+		indexProjects[firstLetter].client.push({ ...item });
 	});
+
+	indexProjects = Object.values(indexProjects);
 
 	return {
 		props: {

@@ -17,6 +17,16 @@ export type FeaturedProjectsType = {
 	vimeoLink: string;
 };
 
+// type IndexProjectData = {
+// 	letter: string;
+// 	client: []
+// }
+
+export type IndexProjectsType = {
+	letter: string;
+	client: [];
+};
+
 export type MediaType = {
 	media: [
 		{

@@ -48,7 +48,7 @@ const getSiteData = async () => {
 	if (data.length <= 0) {
 		return [];
 	}
-	return data;
+	return data?.siteInformation;
 };
 
 module.exports = {

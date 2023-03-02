@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import FeaturedProjectCard from './FeaturedProjectCard';
 import { FeaturedProjectsType } from '../../../shared/types/types';
 import FeaturedPreviewCard from './FeaturedPreviewCard';
+import { useRouter } from 'next/router';
 
 const InfiniteScrollOuter = styled.div`
 	position: relative;
@@ -36,6 +37,8 @@ const FeaturedProjectsWrapper = ({
 }: {
 	children: ReactNode;
 }): JSX.Element => {
+	const router = useRouter();
+
 	const contentRef = useRef<HTMLDivElement | null>(null);
 	const scrollRef = useRef<HTMLDivElement | null>(null);
 	const [height, setHeight] = useState<number>(0);
@@ -53,12 +56,20 @@ const FeaturedProjectsWrapper = ({
 	}, [height]);
 
 	useEffect(() => {
-		if (contentRef.current) {
-			if (!scrollRef.current) return;
-			setHeight(contentRef.current.offsetHeight);
-			scrollRef.current.scrollTop = backupHeight;
-		}
-	});
+		if (!contentRef) return;
+
+		const timer = setTimeout(() => {
+			if (contentRef.current) {
+				if (!scrollRef.current) return;
+				setHeight(contentRef.current.offsetHeight);
+				scrollRef.current.scrollTop = backupHeight;
+			}
+		}, 50);
+
+		return () => {
+			clearTimeout(timer);
+		};
+	}, [router.asPath, contentRef]);
 
 	return (
 		<InfiniteScrollOuter className="infinite-scroll-loop-outer">

@@ -9,6 +9,12 @@ const LogoWrapper = styled.a`
 		}
 	}
 
+	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
+		svg {
+			width: 100px;
+		}
+	}
+
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		svg {
 			width: 140px;

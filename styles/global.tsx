@@ -86,8 +86,7 @@ export const GlobalStyles = createGlobalStyle`
 	p,
 	.type-p,
 	a,
-	button,
-	div {
+	button {
 		font-size: ${theme.size.body};
 		color: var(--fg);
 
@@ -101,11 +100,6 @@ export const GlobalStyles = createGlobalStyle`
 	.type-p,
 	a {
 		font-family: var(--font-light);
-	}
-
-	small
-	.type-small {
-		font-size: ${theme.size.small};
 	}
 
 	h1,
@@ -126,6 +120,10 @@ export const GlobalStyles = createGlobalStyle`
 			font-size: ${theme.sizeMobile.h1};
 			line-height: 2.563rem;
 		}
+	}
+
+	.type-small {
+		font-size: ${theme.size.small};
 	}
 
 	.view-element-fade-in

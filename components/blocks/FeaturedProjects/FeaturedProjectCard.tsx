@@ -35,8 +35,8 @@ const DesktopFeaturedProjectCardWrapper = styled.a`
 
 		.featured-client,
 		.featured-title {
-			background: var(--colour-red);
-			color: var(--colour-black);
+			background: var(--fg);
+			color: var(--bg);
 			border-radius: 100px;
 		}
 	}
@@ -153,7 +153,7 @@ const FeaturedProjectCard = (props: Props) => {
 	};
 
 	useEffect(() => {
-		setTimeout(() => {
+		const timer = setTimeout(() => {
 			const mobileTextRef = mobileContainerRef?.current;
 			const clientTextRef = clientContainerRef?.current;
 			const textRef = titleContainerRef?.current;
@@ -185,6 +185,9 @@ const FeaturedProjectCard = (props: Props) => {
 			}
 		}, 250);
 
+		return () => {
+			clearTimeout(timer);
+		};
 	}, []);
 
 	return (

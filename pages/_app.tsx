@@ -72,9 +72,6 @@ const App = (props: Props) => {
 	useEffect(() => {
 		handleBgColour(router.asPath);
 
-		console.log('router', router);
-		
-
 		const hasCookies = Cookies.get('visited');
 
 		if (hasCookies) {

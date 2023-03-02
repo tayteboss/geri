@@ -10,8 +10,8 @@ const MenuWrapper = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		position: fixed;
-		bottom: 16px;
-		left: 16px;
+		bottom: ${pxToRem(8)};
+		left: ${pxToRem(8)};
 
 		.primary-link {
 			font-size: ${pxToRem(24)};
