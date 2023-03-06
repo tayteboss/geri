@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
+import pxToRem from '../../../utils/pxToRem';
 
 type StyledProps = {
 	$isHovered: boolean;
@@ -8,7 +9,7 @@ type StyledProps = {
 }
 
 const PrimaryLinkWrapper = styled.a<StyledProps>`
-	padding: 0 8px;
+	padding: 0 ${pxToRem(5)};
 	background: ${(props) => props.$isActiveLink ? 'var(--fg)' : props.$isHovered ? 'var(--fg)' : 'var(--bg)'};
 	color: ${(props) => props.$isActiveLink ? 'var(--bg)' : props.$isHovered ? 'var(--bg)' : 'var(--fg)'};
 	border: 1px solid var(--fg);

@@ -88,7 +88,7 @@ const FeaturedPreviewCard = () => {
 
 	const videoRef = useRef<HTMLVideoElement>(null);
 
-	if (!previewData) return;
+	if (!previewData) return <></>;
 
 	return (
 		<AnimatePresence>

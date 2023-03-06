@@ -41,6 +41,8 @@ export const GlobalStyles = createGlobalStyle`
 		background: var(--bg);
 		font-size: 16px;
 
+		transition: background var(--transition-speed-slow) var(--transition-ease);
+
 		&.no-scroll {
 			overflow-y: hidden;
 			
@@ -98,7 +100,8 @@ export const GlobalStyles = createGlobalStyle`
 
 	p,
 	.type-p,
-	a {
+	a,
+	button {
 		font-family: var(--font-light);
 	}
 

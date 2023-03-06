@@ -8,6 +8,7 @@ import Layout from '../components/layout';
 import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
+import handleBgColour from '../utils/handleBgColour';
 
 type Transitions = {
 	hidden: {
@@ -46,17 +47,6 @@ const App = (props: Props) => {
 	const router= useRouter();
 	const routerEvents = router.events;
 
-	const handleBgColour = (url: string): void => {
-		if (url === '/') {
-			document.documentElement.style.setProperty('--bg', `var(--colour-black)`);
-			document.documentElement.style.setProperty('--fg', `var(--colour-red)`);
-		}
-		if (url === '/index') {
-			document.documentElement.style.setProperty('--bg', `var(--colour-red)`);
-			document.documentElement.style.setProperty('--fg', `var(--colour-black)`);
-		}
-	}
-
 	const handleExitComplete = (): void => {
 		window.scrollTo(0, 0);
 	};
@@ -64,7 +54,7 @@ const App = (props: Props) => {
 	use1vh();
 
 	useEffect(() => {
-		routerEvents.on('routeChangeStart', (url) => {
+		routerEvents.on('routeChangeComplete', (url) => {
 			handleBgColour(url);
 		});
 	}, [routerEvents]);

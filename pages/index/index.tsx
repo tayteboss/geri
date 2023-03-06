@@ -4,9 +4,7 @@ import { NextSeo } from 'next-seo';
 import IndexProjects from '../../components/blocks/IndexProjects';
 import Footer from '../../components/layout/Footer';
 
-const PageWrapper = styled.div`
-	background: var(--colour-red);
-`;
+const PageWrapper = styled.div``;
 
 type Props = {
 	siteData: {

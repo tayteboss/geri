@@ -27,7 +27,7 @@ const MobileCheck = styled.div`
 const DesktopFeaturedProjectCardWrapper = styled.a`
 	text-decoration: none;
 	display: flex;
-	height: 60px;
+	height: ${pxToRem(58)};
 	column-gap: ${pxToRem(60)};
 
 	&:hover {
@@ -54,7 +54,7 @@ const ClientWrapper = styled.div`
 		top: 0;
 		right: 0;
 		height: 100%;
-		width: 20px;
+		width: ${pxToRem(20)};
 		background: rgb(0,0,0);
 		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
 	}

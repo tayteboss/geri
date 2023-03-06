@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 const IndexProjectsWrapper = styled(motion.section)`
 	padding: ${pxToRem(48)} 0 0 0;
-	margin-bottom: ${pxToRem(120)};
+	margin-bottom: ${pxToRem(160)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: ${pxToRem(120)} ${pxToRem(16)} 0;
