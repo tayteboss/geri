@@ -6,6 +6,7 @@ import FeaturedPreviewCard from './FeaturedPreviewCard';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import MobileFeaturedProjects from './MobileFeaturedProjects';
 
 const InfiniteScrollOuter = styled.div`
 	position: relative;
@@ -17,6 +18,7 @@ const InfiniteScrollOuter = styled.div`
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: 0 0.5rem;
+		display: none;
 	}
 `;
 
@@ -127,6 +129,7 @@ const FeaturedProjects = (props: Props) => {
 					/>
 				))}
 			</FeaturedProjectsWrapper>
+			<MobileFeaturedProjects data={doubleData} />
 			<FeaturedPreviewCard />
 		</>
 	);

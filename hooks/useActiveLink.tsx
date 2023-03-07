@@ -13,7 +13,7 @@ const useActiveLink = (): string => {
 		} else if (router.pathname === '/information') {
 			setActiveLink('Information');
 		} else {
-			setActiveLink('Home');
+			setActiveLink('');
 		}
 	}, [router]);
 
