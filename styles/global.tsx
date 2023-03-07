@@ -129,6 +129,58 @@ export const GlobalStyles = createGlobalStyle`
 		font-size: ${theme.size.small};
 	}
 
+	.content {
+		h1,
+		h2,
+		h3,
+		h4,
+		ul,
+		ol,
+		blockquote,
+		figure,
+		img,
+		video,
+		iframe,
+		.button {
+			&:not(:last-child) {
+				margin-bottom: 1rem;
+			}
+		}
+
+		p {
+			&:not(:last-child)
+			{
+				margin-bottom: 1.25rem;
+			}
+		}
+
+		ul,
+		ol
+		{
+			padding-left: 1.25rem;
+			font-size: ${theme.size.body};
+
+			li
+			{
+				list-style: disc;
+				line-height: 1.5;
+
+				&:not(:last-child)
+				{
+					margin-bottom: 0.125rem;
+				}
+			}
+		}
+
+		ol
+		{
+			li
+			{
+				list-style: decimal;
+			}
+		}
+	}
+
 	.view-element-fade-in
 	{
 		opacity: 0;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/fonts.css';
 import { ThemeProvider } from 'styled-components';
 import { useRouter } from 'next/router';
@@ -9,26 +9,11 @@ import { theme } from '../styles/theme';
 import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 import handleBgColour from '../utils/handleBgColour';
-
-type Transitions = {
-	hidden: {
-		opacity: number;
-		transition: {
-			duration: number;
-		}
-	}
-	visible: {
-		opacity: number;
-		transition: {
-			duration: number;
-			delay: number
-		}
-	}
-};
+import { Transitions } from '../shared/types/types';
 
 const pageTransitionVariants: Transitions = {
-	hidden: { opacity: 0, transition: { duration: 0.3 } },
-	visible: { opacity: 1, transition: { duration: 0.3, delay: 0.25 } },
+	hidden: { opacity: 0, transition: { duration: 0.2 } },
+	visible: { opacity: 1, transition: { duration: 0.2 } },
 };
 
 type Props = {

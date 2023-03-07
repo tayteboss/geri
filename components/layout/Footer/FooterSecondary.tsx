@@ -1,9 +1,10 @@
 import styled from 'styled-components';
+import pxToRem from '../../../utils/pxToRem';
 
 const options = require('../../../json/siteData.json');
 
 const FooterSecondaryWrapper = styled.div`
-	grid-column: 5 / -1;
+	grid-column: span 5;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		grid-column: 1 / -1;
@@ -14,9 +15,14 @@ const Title = styled.p``;
 
 const Link = styled.a`
 	text-decoration: none;
+	padding: ${pxToRem(2)} ${pxToRem(8)};
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
 
 	&:hover {
-		text-decoration: underline;
+		background: var(--fg);
+		color: var(--bg);
+		border-radius: 100px;
 	}
 `;
 

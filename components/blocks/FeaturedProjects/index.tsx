@@ -4,6 +4,8 @@ import FeaturedProjectCard from './FeaturedProjectCard';
 import { FeaturedProjectsType } from '../../../shared/types/types';
 import FeaturedPreviewCard from './FeaturedPreviewCard';
 import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 const InfiniteScrollOuter = styled.div`
 	position: relative;
@@ -14,7 +16,7 @@ const InfiniteScrollOuter = styled.div`
 	mix-blend-mode: lighten;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: 0 1rem;
+		padding: 0 0.5rem;
 	}
 `;
 
@@ -71,8 +73,17 @@ const FeaturedProjectsWrapper = ({
 		};
 	}, [router.asPath, contentRef]);
 
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.2,
+		rootMargin: '-5%'
+	});
+
 	return (
-		<InfiniteScrollOuter className="infinite-scroll-loop-outer">
+		<InfiniteScrollOuter
+			className="infinite-scroll-loop-outer"
+			ref={ref}
+		>
 			<InfiniteScrollInner
 				className="infinite-scroll-loop-inner"
 				ref={scrollRef}

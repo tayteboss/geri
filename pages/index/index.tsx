@@ -1,10 +1,13 @@
+import React from 'react';
 import styled from 'styled-components';
 import { getSiteData, getIndexProjects } from '../../lib/datocms';
 import { NextSeo } from 'next-seo';
 import IndexProjects from '../../components/blocks/IndexProjects';
 import Footer from '../../components/layout/Footer';
+import { motion } from 'framer-motion';
+import { Transitions } from '../../shared/types/types';
 
-const PageWrapper = styled.div``;
+const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	siteData: {
@@ -14,16 +17,23 @@ type Props = {
 		};
 	};
 	indexProjects: [];
+	pageTransitionVariants: Transitions;
 };
 
 const Page = (props: Props) => {
 	const {
 		siteData,
 		indexProjects,
+		pageTransitionVariants
 	} = props;
 
 	return (
-	<PageWrapper>
+	<PageWrapper
+		variants={pageTransitionVariants}
+		initial='hidden'
+		animate='visible'
+		exit='hidden'
+	>
 		<NextSeo
 			title="Geri Edits Films - Index"
 			description={siteData?.seoDescription}

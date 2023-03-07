@@ -3,6 +3,7 @@ import pxToRem from '../../../utils/pxToRem';
 import PrimaryButton from '../../elements/PrimaryButton';
 import { useState } from 'react';
 import LayoutGrid from '../../common/LayoutGrid';
+import InformationBio from './InformationBio';
 
 const options = require('../../../json/siteData.json');
 
@@ -11,7 +12,7 @@ const InformationWrapper = styled.div`
 	margin-bottom: ${pxToRem(160)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: ${pxToRem(120)} ${pxToRem(16)} 0;
+		padding: ${pxToRem(120)} ${pxToRem(8)} 0;
 	}
 
 	.grid {
@@ -42,13 +43,26 @@ const GridWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		grid-column: 1 / -1;
+	}
 `;
 
 const Link = styled.a`
 	text-decoration: none;
+	padding: ${pxToRem(2)} ${pxToRem(8)};
+
+	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 0;
+	}
 
 	&:hover {
-		text-decoration: underline;
+		background: var(--fg);
+		color: var(--bg);
+		border-radius: 100px;
 	}
 `;
 
@@ -76,6 +90,9 @@ const Information = () => {
 				<Subtitle className="type-h1">
 					{subTitle}
 				</Subtitle>
+			)}
+			{showBio && (
+				<InformationBio bio={bio} />
 			)}
 			{!showBio && (
 				<PrimaryButton

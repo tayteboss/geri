@@ -3,8 +3,10 @@ import { getSiteData, getFeaturedProjects } from '../lib/datocms';
 import { NextSeo } from 'next-seo';
 import FeaturedProjects from '../components/blocks/FeaturedProjects';
 import { PreviewContextWrapper } from '../shared/context/previewContext';
+import { Transitions } from '../shared/types/types';
+import { motion } from 'framer-motion';
 
-const PageWrapper = styled.div``;
+const PageWrapper = styled(motion.div)``;
 
 type Props = {
 	siteData: {
@@ -14,16 +16,23 @@ type Props = {
 		};
 	};
 	featuredProjects: [];
+	pageTransitionVariants: Transitions;
 };
 
 const Page = (props: Props) => {
 	const {
 		siteData,
 		featuredProjects,
+		pageTransitionVariants
 	} = props;
 
 	return (
-	<PageWrapper>
+	<PageWrapper
+		variants={pageTransitionVariants}
+		initial='hidden'
+		animate='visible'
+		exit='hidden'
+	>
 		<NextSeo
 			title="Geri Edits Films"
 			description={siteData?.seoDescription}

@@ -11,7 +11,7 @@ const IndexProjectsWrapper = styled(motion.section)`
 	margin-bottom: ${pxToRem(160)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: ${pxToRem(120)} ${pxToRem(16)} 0;
+		padding: ${pxToRem(120)} ${pxToRem(8)} 0;
 	}
 
 	.grid {
@@ -59,7 +59,7 @@ const IndexProjects = (props: Props) => {
 
 	const { ref, inView } = useInView({
 		triggerOnce: true,
-		threshold: 0.2,
+		threshold: 0.1,
 		rootMargin: '100px'
 	});
 

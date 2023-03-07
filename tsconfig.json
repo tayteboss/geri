@@ -22,8 +22,13 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "next-sitemap.js", "pages/_document.js", "components/layout/Header/index.js", "components/common/SmoothScroll/index.js", "shared/context/previewContext.tsx"  ],
+    "**/*.tsx",
+    "next-sitemap.js",
+    "pages/_document.js",
+    "components/layout/Header/index.js",
+    "components/common/SmoothScroll/index.js",
+    "shared/context/previewContext.tsx"
+  ],
   "exclude": [
     "node_modules"
   ]

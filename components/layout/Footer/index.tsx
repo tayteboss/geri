@@ -8,7 +8,7 @@ const FooterWrapper = styled.footer`
 	margin-bottom: ${pxToRem(160)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		padding: 0 ${pxToRem(16)};
+		padding: 0 ${pxToRem(8)};
 	}
 
 	.grid {

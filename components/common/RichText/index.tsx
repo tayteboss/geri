@@ -6,9 +6,9 @@ import { isLink, isParagraph } from 'datocms-structured-text-utils';
 const Content = styled.div``;
 
 type Props = {
-	className: string;
+	className?: string;
 	data: any;
-	color: string;
+	color?: string;
 };
 
 const RichText = (props: Props) => {

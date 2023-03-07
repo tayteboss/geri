@@ -37,3 +37,19 @@ export type MediaType = {
 		}
 	];
 };
+
+export type Transitions = {
+	hidden: {
+		opacity: number;
+		transition: {
+			duration: number;
+		}
+	}
+	visible: {
+		opacity: number;
+		transition: {
+			duration: number;
+			delay?: number
+		}
+	}
+};

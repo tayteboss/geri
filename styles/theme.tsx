@@ -27,10 +27,10 @@ export const theme = {
 	sizeMobile: {
 		small: '0.75rem',
 		body: '1rem',
-		h4: '2.375rem',
-		h3: '2.375rem',
-		h2: '2.375rem',
-		h1: '2.375rem',
+		h4: '2.275rem',
+		h3: '2.275rem',
+		h2: '2.275rem',
+		h1: '2.275rem',
 	},
 	mediaBreakpoints: {
 		desktop: '(min-width: 1680px)',

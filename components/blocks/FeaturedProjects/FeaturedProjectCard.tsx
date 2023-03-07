@@ -5,6 +5,8 @@ import pxToRem from '../../../utils/pxToRem';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { PreviewContext } from '../../../shared/context/previewContext';
 import Marquee from 'react-fast-marquee';
+import randomIntFromInterval from '../../../utils/randomIntFromInterval';
+import Cookies from 'js-cookie';
 
 type StyledProps = {
 	$isMarquee?: boolean;
@@ -90,6 +92,10 @@ const Title = styled.div<StyledProps>`
 	width: 100%;
 
 	transition: all var(--transition-speed-default) var(--transition-ease);
+
+	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+		padding: 0;
+	}
 `;
 
 const MobileFeaturedProjectCardWrapper = styled.a`
@@ -130,11 +136,18 @@ const FeaturedProjectCard = (props: Props) => {
 		data
 	} = props;
 
-	const [useMobileMarquee, setUseMobileMarquee] = useState<boolean>(true);
+	const loadingStringOne = 'Geri Edits Films Geri';
+	const loadingStringTwo = 'Edits Films Geri Edits';
+	const loadingStringThree = 'Films Geri Edits Films';
+
+	const [useMobileMarquee, setUseMobileMarquee] = useState<boolean>(false);
 	const [useClientMarquee, setUseClientMarquee] = useState<boolean>(true);
 	const [useTitleMarquee, setUseTitleMarquee] = useState<boolean>(true);
 	const [isHovered, setIsHovered] = useState<boolean>(false);
 	const [outerHover, setOuterHover] = useState<boolean>(false);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const [loadingString, setLoadingString] = useState<string>('');
+	const [mobileLoadingString] = useState<string>('Geri Edits Films Geri Edits Films');
 
 	const { setPreviewData } = useContext(PreviewContext);
 
@@ -153,7 +166,28 @@ const FeaturedProjectCard = (props: Props) => {
 	};
 
 	useEffect(() => {
-		const timer = setTimeout(() => {
+		const rndLoadingString = randomIntFromInterval(1, 3);
+
+		if (rndLoadingString === 1) {
+			setLoadingString(loadingStringOne);
+		}
+
+		if (rndLoadingString === 2) {
+			setLoadingString(loadingStringTwo);
+		}
+
+		if (rndLoadingString === 3) {
+			setLoadingString(loadingStringThree);
+		}
+
+		const rndLoadingInt = randomIntFromInterval(750, 1750);
+
+		const timerTwo = setTimeout(() => {
+			setIsLoading(false);
+			Cookies.set('visited', 'true', { expires: 1, path: '' });
+		}, rndLoadingInt);
+
+		const timerOne = setTimeout(() => {
 			const mobileTextRef = mobileContainerRef?.current;
 			const clientTextRef = clientContainerRef?.current;
 			const textRef = titleContainerRef?.current;
@@ -183,10 +217,11 @@ const FeaturedProjectCard = (props: Props) => {
 			if (textRef?.scrollWidth <= textRef?.offsetWidth) {
 				setUseTitleMarquee(false);
 			}
-		}, 250);
+		}, rndLoadingInt + 500);
 
 		return () => {
-			clearTimeout(timer);
+			clearTimeout(timerOne);
+			clearTimeout(timerTwo);
 		};
 	}, []);
 
@@ -219,7 +254,7 @@ const FeaturedProjectCard = (props: Props) => {
 														ref={clientContainerRef}
 														$isMarquee={useClientMarquee}
 													>
-														{data?.client}
+														{isLoading ? loadingString : data?.client}
 													</Client>
 												</Marquee>
 											)}
@@ -234,7 +269,7 @@ const FeaturedProjectCard = (props: Props) => {
 												ref={clientContainerRef}
 												$isMarquee={useClientMarquee}
 											>
-												{data?.client}
+												{isLoading ? loadingString : data?.client}
 											</Client>
 										)}
 									</ClientWrapper>
@@ -249,7 +284,7 @@ const FeaturedProjectCard = (props: Props) => {
 										ref={clientContainerRef}
 										$isMarquee={useClientMarquee}
 									>
-										{data?.client}
+										{isLoading ? loadingString : data?.client}
 									</Client>
 								)}
 							</ClientWrapper>
@@ -273,7 +308,7 @@ const FeaturedProjectCard = (props: Props) => {
 														ref={titleContainerRef}
 														$isMarquee={useTitleMarquee}
 													>
-														{data?.title}
+														{isLoading ? loadingString : data?.title}
 													</Title>
 												</Marquee>
 											)}
@@ -288,7 +323,7 @@ const FeaturedProjectCard = (props: Props) => {
 												ref={titleContainerRef}
 												$isMarquee={useTitleMarquee}
 											>
-												{data?.title}
+												{isLoading ? loadingString : data?.title}
 											</Title>
 										)}
 									</TitleWrapper>
@@ -303,7 +338,7 @@ const FeaturedProjectCard = (props: Props) => {
 										ref={titleContainerRef}
 										$isMarquee={useTitleMarquee}
 									>
-										{data?.title}
+										{isLoading ? loadingString : data?.title}
 									</Title>
 								)}
 							</TitleWrapper>
@@ -324,14 +359,14 @@ const FeaturedProjectCard = (props: Props) => {
 										className="type-large"
 										ref={mobileContainerRef}
 									>
-										{data?.client}
+										{isLoading ? mobileLoadingString : data?.client}
 									</MobileClient>
 								</Marquee>
 							)}
 							{!useMobileMarquee && (
 								<MobileClient
 									className="type-large"ref={mobileContainerRef}>
-									{data?.client}
+									{isLoading ? mobileLoadingString : data?.client}
 								</MobileClient>
 							)}
 						</MobileTitleWrapper>
