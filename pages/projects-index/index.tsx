@@ -6,6 +6,7 @@ import IndexProjects from '../../components/blocks/IndexProjects';
 import Footer from '../../components/layout/Footer';
 import { motion } from 'framer-motion';
 import { Transitions } from '../../shared/types/types';
+import Head from 'next/head';
 
 const PageWrapper = styled(motion.div)``;
 
@@ -47,6 +48,15 @@ const Page = (props: Props) => {
 				],
 			}}
 		/>
+		<Head>
+			<link rel="apple-touch-icon" sizes="180x180" href={`/favicon/red/apple-touch-icon.png`} />
+			<link rel="icon" type="image/png" sizes="32x32" href={`/favicon/red/favicon-32x32.png`} />
+			<link rel="icon" type="image/png" sizes="16x16" href={`/favicon/red/favicon-16x16.png`} />
+			<link rel="manifest" href={`/favicon/red/site.webmanifest`} />
+			<link rel="shortcut icon" href={`/favicon/red/favicon.ico`} />
+			<meta name="msapplication-config" content={`/favicon/red/browserconfig.xml`} />
+			<meta name="theme-color" content="#ffffff" />
+		</Head>
 		<IndexProjects data={indexProjects} />
 		<Footer showInfo />
 	</PageWrapper>

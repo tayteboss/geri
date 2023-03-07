@@ -29,7 +29,7 @@ const Menu = () => {
 	return (
 		<MenuWrapper>
 			<PrimaryLink title="Featured" link="/" isActiveLink={activeLink === 'Home'} />
-			<PrimaryLink title="Index" link="/index" isActiveLink={activeLink === 'Index'} />
+			<PrimaryLink title="Index" link="/projects-index" isActiveLink={activeLink === 'Index'} />
 			<PrimaryLink title="Information" link="/information" isActiveLink={activeLink === 'Information'} />
 		</MenuWrapper>
 	);

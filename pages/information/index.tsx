@@ -6,6 +6,7 @@ import Footer from '../../components/layout/Footer';
 import Information from '../../components/blocks/Information';
 import { Transitions } from '../../shared/types/types';
 import { motion } from 'framer-motion';
+import Head from 'next/head';
 
 const PageWrapper = styled(motion.div)``;
 
@@ -45,6 +46,15 @@ const Page = (props: Props) => {
 				],
 			}}
 		/>
+		<Head>
+			<link rel="apple-touch-icon" sizes="180x180" href={`/favicon/white/apple-touch-icon.png`} />
+			<link rel="icon" type="image/png" sizes="32x32" href={`/favicon/white/favicon-32x32.png`} />
+			<link rel="icon" type="image/png" sizes="16x16" href={`/favicon/white/favicon-16x16.png`} />
+			<link rel="manifest" href={`/favicon/white/site.webmanifest`} />
+			<link rel="shortcut icon" href={`/favicon/white/favicon.ico`} />
+			<meta name="msapplication-config" content={`/favicon/white/browserconfig.xml`} />
+			<meta name="theme-color" content="#ffffff" />
+		</Head>
 		<Information />
 		<Footer showInfo={false} />
 	</PageWrapper>

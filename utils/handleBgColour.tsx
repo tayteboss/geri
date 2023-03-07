@@ -2,7 +2,7 @@ const handleBgColour = (url: string): void => {
 	if (url === '/') {
 		document.documentElement.style.setProperty('--bg', `var(--colour-black)`);
 		document.documentElement.style.setProperty('--fg', `var(--colour-red)`);
-	} else if (url === '/index') {
+	} else if (url === '/projects-index') {
 		document.documentElement.style.setProperty('--bg', `var(--colour-red)`);
 		document.documentElement.style.setProperty('--fg', `var(--colour-black)`);
 	} else if (url === '/information') {
