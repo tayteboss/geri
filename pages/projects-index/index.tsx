@@ -99,7 +99,7 @@ export async function getStaticProps() {
 	rawIndexProjects.forEach((item: { client: string }) => {
 		const client = item.client;
 		const arrName = client.split(' ');
-		const firstLetter = arrName[arrName.length - 1].charAt(0);
+		const firstLetter = arrName[0].charAt(0);
 
 		if (!indexProjects[firstLetter]) {
 			indexProjects[firstLetter] = {
