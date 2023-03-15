@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
-import PrimaryButton from '../../elements/PrimaryButton';
-import { useState } from 'react';
 import LayoutGrid from '../../common/LayoutGrid';
 import InformationBio from './InformationBio';
+import Image from 'next/image';
 
 const options = require('../../../json/siteData.json');
 
@@ -66,6 +65,13 @@ const Link = styled.a`
 	}
 `;
 
+const ImageWrapper = styled.div`
+	position: relative;
+	padding-top: 56.3%;
+	width: calc(${pxToRem(950)} / 2);
+	margin: ${pxToRem(32)} 0;
+`;
+
 const Information = () => {
 	const {
 		vimeoLink,
@@ -73,12 +79,10 @@ const Information = () => {
 		email,
 		phone,
 		bio,
+		bioImage,
 		title,
 		subTitle
 	} = options;
-
-	const [showBio, setShowBio] = useState(false);
-
 	return (
 		<InformationWrapper>
 			{title && (
@@ -134,6 +138,16 @@ const Information = () => {
 					</GridWrapper>
 				</LayoutGrid>
 			</ContactWrapper>
+			{bioImage?.url && (
+				<ImageWrapper>
+					<Image
+						src={bioImage.url}
+						layout="fill"
+						objectFit="cover"
+						priority
+					/>
+				</ImageWrapper>
+			)}
 		</InformationWrapper>
 	);
 };

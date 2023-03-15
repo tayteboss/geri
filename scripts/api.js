@@ -41,6 +41,9 @@ const getSiteData = async () => {
 					links
 					value
 				}
+				bioImage {
+					url
+				}
 			}
 		}
 	`;

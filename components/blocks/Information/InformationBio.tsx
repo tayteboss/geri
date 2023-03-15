@@ -6,6 +6,7 @@ const InformationBioWrapper = styled.div`
 	column-count: 2;
 	column-gap: ${pxToRem(16)};
 	max-width: ${pxToRem(950)};
+	margin-bottom: ${pxToRem(32)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		column-count: 1;
