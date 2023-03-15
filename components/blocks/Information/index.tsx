@@ -91,15 +91,7 @@ const Information = () => {
 					{subTitle}
 				</Subtitle>
 			)}
-			{showBio && (
-				<InformationBio bio={bio} />
-			)}
-			{!showBio && (
-				<PrimaryButton
-					title="Read Full Bio" 
-					handleClick={() => setShowBio(true)}
-				/>
-			)}
+			<InformationBio bio={bio} />
 			<ContactWrapper>
 				<LayoutGrid>
 					<GridWrapper>
