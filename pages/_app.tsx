@@ -10,6 +10,7 @@ import { GlobalStyles } from '../styles/global';
 import use1vh from '../hooks/use1vh';
 import handleBgColour from '../utils/handleBgColour';
 import { Transitions } from '../shared/types/types';
+import LoadingCover from '../components/blocks/LoadingCover';
 
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.2 } },
@@ -64,6 +65,7 @@ const App = (props: Props) => {
 
 	return (
 		<>
+			<LoadingCover />
 			<GlobalStyles />
 			<ThemeProvider theme={theme}>
 				<Layout>

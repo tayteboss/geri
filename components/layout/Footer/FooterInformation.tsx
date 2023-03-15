@@ -56,12 +56,12 @@ const FooterInformation = () => {
 				</LinkTag>
 			</Link>
 			<Link href={instagramLink} passHref>
-				<LinkTag $mt="16px">
+				<LinkTag $mt="16px" target="_blank">
 					@geri______tv
 				</LinkTag>
 			</Link>
 			<Link href={vimeoLink} passHref>
-				<LinkTag>
+				<LinkTag target="_blank">
 					vimeo.com/geritv
 				</LinkTag>
 			</Link>
