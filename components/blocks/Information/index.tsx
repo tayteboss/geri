@@ -43,7 +43,7 @@ const GridWrapper = styled.div`
 	flex-direction: column;
 	align-items: flex-start;
 
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
+	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
 		grid-column: 1 / -1;
 	}
 `;
@@ -70,6 +70,11 @@ const ImageWrapper = styled.div`
 	padding-top: 56.3%;
 	width: calc(${pxToRem(950)} / 2);
 	margin: ${pxToRem(32)} 0;
+
+	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
+		width: 100%;
+		padding-top: 100%;
+	}
 `;
 
 const Information = () => {
