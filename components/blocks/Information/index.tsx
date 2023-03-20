@@ -67,9 +67,21 @@ const Link = styled.a`
 
 const ImageWrapper = styled.div`
 	position: relative;
-	padding-top: 56.3%;
+	height: calc(${pxToRem(950)} / 2);
 	width: calc(${pxToRem(950)} / 2);
 	margin: ${pxToRem(32)} 0;
+	background-color: var(--fg);
+	position: relative;
+
+	img {
+		mix-blend-mode: lighten;
+
+		&:hover {
+			mix-blend-mode: normal;
+		}
+
+		transition: all ${props => props.theme.transitionSpeed.default} ease;
+	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.mobile} {
 		width: 100%;
