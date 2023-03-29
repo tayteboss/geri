@@ -24,3 +24,10 @@ export const useClickOutside = (
 	}, [handler, ref]);
 
 };
+
+// HOW TO USE
+
+// const ref = useRef<HTMLDivElement>(null!);
+// useClickOutside(ref, () => {
+// 	setIsActive(false);
+// });

@@ -20,6 +20,7 @@ export type FeaturedProjectsType = {
 export type IndexProjectsType = {
 	letter: string;
 	client: [];
+	projects: [];
 };
 
 export type MediaType = {

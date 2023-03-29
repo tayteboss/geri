@@ -2,7 +2,10 @@ const INDEX_PROJECTS_QUERY: string = `
 	query Query {
 		allIndexProjects(first: 100) {
 			client
-			vimeoLink
+			projects {
+				title,
+				link
+			}
 		}
 		_allIndexProjectsMeta {
 			count

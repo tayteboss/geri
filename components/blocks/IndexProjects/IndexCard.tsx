@@ -5,6 +5,9 @@ import { motion } from 'framer-motion';
 
 const IndexCardWrapper = styled(motion.div)`
 	grid-column: span 2;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		grid-column: span 3;
@@ -50,10 +53,10 @@ const IndexCard = (props: IndexProjectsType) => {
 			variants={childVariants}
 		>
 			<Letter>{letter || letter}</Letter>
-			{hasClients && client.map((item: { client: string; vimeoLink: string }, index) => (
+			{hasClients && client.map((item: { client: string; projects: [] }, index: number) => (
 				<IndexClientCard
 					name={item?.client}
-					link={item?.vimeoLink}
+					projects={item?.projects}
 					key={index}
 				/>
 			))}
