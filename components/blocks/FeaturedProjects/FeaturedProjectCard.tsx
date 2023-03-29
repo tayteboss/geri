@@ -247,7 +247,7 @@ const FeaturedProjectCard = (props: Props) => {
 												<Marquee
 													gradient={false}
 													speed={75}
-													play={isHovered}
+													play={outerHover}
 												>
 													<Client
 														className="type-large"
@@ -301,7 +301,7 @@ const FeaturedProjectCard = (props: Props) => {
 												<Marquee
 													gradient={false}
 													speed={75}
-													play={isHovered}
+													play={outerHover}
 												>
 													<Title
 														className="type-large"
