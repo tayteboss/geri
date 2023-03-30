@@ -46,22 +46,22 @@ const FooterInformation = () => {
 	return (
 		<FooterInformationWrapper>
 			<Link href={`mailto: ${email}`} passHref>
-				<LinkTag>
+				<LinkTag className="cursor-link">
 					{email && email}
 				</LinkTag>
 			</Link>
 			<Link href={`tel: ${phone}`} passHref>
-				<LinkTag>
+				<LinkTag className="cursor-link">
 					{phone && phone}
 				</LinkTag>
 			</Link>
 			<Link href={instagramLink} passHref>
-				<LinkTag $mt="16px" target="_blank">
+				<LinkTag $mt="16px" target="_blank" className="cursor-link">
 					@geri______tv
 				</LinkTag>
 			</Link>
 			<Link href={vimeoLink} passHref>
-				<LinkTag target="_blank">
+				<LinkTag target="_blank" className="cursor-link">
 					vimeo.com/geritv
 				</LinkTag>
 			</Link>

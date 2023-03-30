@@ -17,7 +17,7 @@ export const useMousePosition = (): ReturnMousePosition => {
 	const setFromEvent = (e: MouseEvent) => setPosition({ x: e.clientX, y: e.clientY });
 
 	useEffect(() => {
-		const throttledSetFromEvent = throttle(setFromEvent, 50);
+		const throttledSetFromEvent = throttle(setFromEvent, 20);
 		window.addEventListener('mousemove', throttledSetFromEvent);
 
 		return () => {

@@ -4,7 +4,6 @@ import FeaturedProjectCard from './FeaturedProjectCard';
 import { FeaturedProjectsType } from '../../../shared/types/types';
 import FeaturedPreviewCard from './FeaturedPreviewCard';
 import { useRouter } from 'next/router';
-import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import MobileFeaturedProjects from './MobileFeaturedProjects';
 
@@ -14,7 +13,7 @@ const InfiniteScrollOuter = styled.div`
 	height: 100lvh;
 	height: 100vh;
 	overflow: hidden;
-	mix-blend-mode: lighten;
+	mix-blend-mode: difference;
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: 0 0.5rem;

@@ -23,14 +23,38 @@ const MenuWrapper = styled.div`
 	}
 `;
 
-const Menu = () => {
+type propsType = {
+	handleCursorUpdate: () => void
+}
+
+const Menu = ({ handleCursorUpdate }: propsType) => {
 	const activeLink: string = useActiveLink();
 
+	const handleClick = () => {
+		handleCursorUpdate();
+
+		setTimeout(() => {
+			handleCursorUpdate();
+		}, 500);
+	}
+
 	return (
-		<MenuWrapper>
-			<PrimaryLink title="Featured" link="/" isActiveLink={activeLink === 'Home'} />
-			<PrimaryLink title="Index" link="/projects-index" isActiveLink={activeLink === 'Index'} />
-			<PrimaryLink title="Information" link="/information" isActiveLink={activeLink === 'Information'} />
+		<MenuWrapper onClick={() => handleClick()}>
+			<PrimaryLink
+				title="Featured"
+				link="/"
+				isActiveLink={activeLink === 'Home'}
+			/>
+			<PrimaryLink
+				title="Index"
+				link="/projects-index"
+				isActiveLink={activeLink === 'Index'}
+			/>
+			<PrimaryLink
+				title="Information"
+				link="/information"
+				isActiveLink={activeLink === 'Information'}
+			/>
 		</MenuWrapper>
 	);
 };

@@ -56,7 +56,7 @@ const ClientWrapper = styled.div`
 		top: 0;
 		right: 0;
 		height: 100%;
-		width: ${pxToRem(20)};
+		width: ${pxToRem(50)};
 		background: rgb(0,0,0);
 		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
 	}
@@ -79,7 +79,21 @@ const Client = styled.div<StyledProps>`
 `;
 
 const TitleWrapper = styled.div`
+	width: 40%;
+	min-width: 40%;
 	overflow: hidden;
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: ${pxToRem(50)};
+		background: rgb(0,0,0);
+		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+	}
 `;
 
 const TitleInner = styled.div``;
@@ -230,7 +244,7 @@ const FeaturedProjectCard = (props: Props) => {
 			<DesktopCheck>
 				<Link href={data?.vimeoLink} passHref>
 					<DesktopFeaturedProjectCardWrapper
-						className="featured-project-card"
+						className="featured-project-card cursor-link"
 						target="_blank"
 						onMouseOver={() => handleOuterMouseOver()}
 						onMouseOut={() => handleOuterMouseOut()}
@@ -247,7 +261,7 @@ const FeaturedProjectCard = (props: Props) => {
 												<Marquee
 													gradient={false}
 													speed={75}
-													play={outerHover}
+													play={isHovered}
 												>
 													<Client
 														className="type-large"
@@ -277,7 +291,10 @@ const FeaturedProjectCard = (props: Props) => {
 							</>
 						)}
 						{!useClientMarquee && (
-							<ClientWrapper>
+							<ClientWrapper
+								onMouseOver={() => setIsHovered(true)}
+								onMouseOut={() => setIsHovered(false)}
+							>
 								{data?.client && (
 									<Client
 										className="type-large featured-client"
@@ -301,7 +318,7 @@ const FeaturedProjectCard = (props: Props) => {
 												<Marquee
 													gradient={false}
 													speed={75}
-													play={outerHover}
+													play={isHovered}
 												>
 													<Title
 														className="type-large"
@@ -331,7 +348,10 @@ const FeaturedProjectCard = (props: Props) => {
 							</>
 						)}
 						{!useTitleMarquee && (
-							<TitleWrapper>
+							<TitleWrapper
+								onMouseOver={() => setIsHovered(true)}
+								onMouseOut={() => setIsHovered(false)}
+							>
 								{data?.title && (
 									<Title
 										className="type-large featured-title"

@@ -27,11 +27,15 @@ const HeaderWrapper = styled.header`
 	}
 `;
 
-const Header = () => {
+type propsType = {
+	handleCursorUpdate: () => void
+}
+
+const Header = ({ handleCursorUpdate }: propsType) => {
 	return (
 		<HeaderWrapper className="header">
 			<Logo />
-			<Menu />
+			<Menu handleCursorUpdate={handleCursorUpdate} />
 			<Location />
 		</HeaderWrapper>
 	)

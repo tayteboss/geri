@@ -29,6 +29,7 @@ const App = (props: Props) => {
 	} = props;
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
+	const [appCursorRefresh, setAppCursorRefresh] = useState<number>(0);
 
 	const router= useRouter();
 	const routerEvents = router.events;
@@ -63,12 +64,18 @@ const App = (props: Props) => {
 		}
 	}, []);
 
+	const handleCursorRefresh = () => {
+		setAppCursorRefresh(appCursorRefresh + 1);
+	};
+
 	return (
 		<>
 			<LoadingCover />
 			<GlobalStyles />
 			<ThemeProvider theme={theme}>
-				<Layout>
+				<Layout
+					appCursorRefresh={appCursorRefresh}
+				>
 					<AnimatePresence
 						mode="wait"
 						onExitComplete={() => handleExitComplete()}
@@ -77,6 +84,7 @@ const App = (props: Props) => {
 							{...pageProps}
 							key={router.asPath}
 							pageTransitionVariants={pageTransitionVariants}
+							handleCursorRefresh={() => handleCursorRefresh()}
 						/>
 					</AnimatePresence>
 				</Layout>

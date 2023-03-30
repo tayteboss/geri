@@ -302,4 +302,21 @@ export const GlobalStyles = createGlobalStyle`
 			}
 		}
 	}
+
+	body,
+	html,
+	#root
+	{
+		cursor: none;
+
+		&:hover
+		{
+			cursor: none;
+
+			@media ${theme.mediaBreakpoints.mobile}
+			{
+				cursor: pointer;
+			}
+		}
+	}
 `;

@@ -119,7 +119,7 @@ const Information = () => {
 						{email && (
 							<Link
 								href={`mailto: ${email}`}
-								className="type-large"
+								className="type-large cursor-link"
 							>
 								{email}
 							</Link>
@@ -127,7 +127,7 @@ const Information = () => {
 						{phone && (
 							<Link
 								href={`tel: ${phone}`}
-								className="type-large"
+								className="type-large cursor-link"
 							>
 								{phone}
 							</Link>
@@ -136,7 +136,7 @@ const Information = () => {
 					<GridWrapper>
 						{instagramLink && (
 							<Link
-								className="type-large"
+								className="type-large cursor-link"
 								href={instagramLink}
 								target="_blank"
 							>
@@ -145,7 +145,7 @@ const Information = () => {
 						)}
 						{vimeoLink && (
 							<Link
-								className="type-large"
+								className="type-large cursor-link"
 								href={vimeoLink}
 								target="_blank"
 							>

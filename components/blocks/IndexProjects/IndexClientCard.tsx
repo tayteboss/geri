@@ -16,7 +16,10 @@ const IndexClientCardWrapper = styled(motion.div)<StyledProps>`
 	align-items: flex-start;
 	position: relative;
 	width: 100%;
-	cursor: ${(props) => props.$hasProjects ? 'pointer' : 'initial'};
+
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const ClientStaticWrapper = styled.div`
@@ -142,9 +145,10 @@ const IndexClientCard = (props: Props) => {
 			onClick={() => setIsActive(true)}
 			$hasProjects={hasProjects}
 			ref={ref}
+			className="cursor-link"
 		>
 			<ClientStaticWrapper>
-				<ClientStatic className="type-small">
+				<ClientStatic className="type-small cursor-link">
 					{name && name}
 				</ClientStatic>
 				<AnimatePresence>
@@ -159,7 +163,7 @@ const IndexClientCard = (props: Props) => {
 								<motion.div
 									variants={childVariants}
 								>
-									<PrimaryLink title={item.title} link={item.link} key={i} />
+									<PrimaryLink title={item.title} link={item.link} target="_blank" key={i} />
 								</motion.div>
 							))}
 						</ClientProjectsWrapper>

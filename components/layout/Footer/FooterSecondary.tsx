@@ -44,7 +44,7 @@ const FooterSecondary = () => {
 				<Link
 					href="https://tayte.co/"
 					target="_blank"
-					className="type-large"
+					className="type-large cursor-link"
 				>
 					tayte.co
 				</Link>

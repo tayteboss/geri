@@ -22,14 +22,17 @@ const PrimaryLinkWrapper = styled.a<StyledProps>`
 type Props = {
 	title: string;
 	link: string;
-	isActiveLink?: boolean
+	isActiveLink?: boolean;
+	onClick?: () => void;
+	target?: string;
 };
 
 const PrimaryLink = (props: Props) => {
 	const {
 		title,
 		link,
-		isActiveLink = false
+		isActiveLink = false,
+		target = '_self'
 	} = props;
 
 	if (!title || !link) return <></>;
@@ -39,6 +42,7 @@ const PrimaryLink = (props: Props) => {
 	return (
 		<Link href={link} passHref>
 			<PrimaryLinkWrapper
+				target={target}
 				$isHovered={isHovered}
 				$isActiveLink={isActiveLink}
 				className="primary-link"
