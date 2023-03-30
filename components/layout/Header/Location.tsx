@@ -26,7 +26,7 @@ const Location = () => {
 	return (
 		<LocationWrapper>
 			<P>{time}</P>
-			<P>Naarm [Melbourne]</P>
+			<P>London</P>
 		</LocationWrapper>
 	);
 };
