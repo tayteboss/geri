@@ -12,10 +12,6 @@ const IndexCardWrapper = styled(motion.div)`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletMedium} {
 		grid-column: span 3;
 	}
-
-	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
-		grid-column: span 2;
-	}
 `;
 
 const Letter = styled.h1`

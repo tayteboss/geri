@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styled from 'styled-components';
 import pxToRem from '../../../utils/pxToRem';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PrimaryLink from '../../elements/PrimaryLink';
 import { useClickOutside } from '../../../hooks/useClickOutside';
 
@@ -19,6 +19,10 @@ const IndexClientCardWrapper = styled(motion.div)<StyledProps>`
 
 	&:hover {
 		cursor: pointer;
+	}
+
+	&.active {
+		opacity: ${(props) => props.$isActive ? 1 : 0.4} !important;
 	}
 `;
 
@@ -50,9 +54,10 @@ const ClientProjectsWrapper = styled(motion.div)`
 		display: block;
 		white-space: nowrap;
 		margin-bottom: ${pxToRem(4)};
-		/* margin-left: ${pxToRem(8)}; */
 		background: var(--colour-red);
 		font-size: ${(props) => props.theme.size.small};
+		position: relative;
+		z-index: 2;
 
 		&:hover {
 			background: var(--colour-black);
@@ -139,13 +144,29 @@ const IndexClientCard = (props: Props) => {
 		setIsActive(false);
 	});
 
+	useEffect(() => {
+		const cards = document.querySelectorAll('.index-client-card');
+
+		if (isActive) {
+			cards.forEach(card => {
+				card.classList.add('active');
+			});
+		} else {
+			cards.forEach(card => {
+				card.classList.remove('active');
+			});
+		}
+	}, [isActive]);
+	
+
 	return (
 		<IndexClientCardWrapper
 			variants={cardVariants}
 			onClick={() => setIsActive(true)}
 			$hasProjects={hasProjects}
+			$isActive={isActive}
 			ref={ref}
-			className="cursor-link"
+			className="cursor-link index-client-card"
 		>
 			<ClientStaticWrapper>
 				<ClientStatic className="type-small cursor-link">
