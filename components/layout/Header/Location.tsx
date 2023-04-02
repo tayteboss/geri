@@ -21,7 +21,7 @@ const Location = () => {
 
 	useEffect(() => {
 		const timeId = setInterval(() => {
-			setTime(startTime());
+			setTime(startTime(location));
 		}, 1000);
 
 		return () => {

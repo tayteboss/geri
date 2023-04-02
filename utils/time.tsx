@@ -1,9 +1,25 @@
-const startTime = (): string => {
-	let date = new Date();
-	let h: string | number = date.getHours(); // 0 - 23
-	let m: string | number = date.getMinutes(); // 0 - 59
-	let s: string | number = date.getSeconds(); // 0 - 59
-	let session = "AM";
+import moment from "moment-timezone";
+
+const startTime = (location: string): string => {
+	let h: string | number = 0;
+	let m: string | number = 0;
+	let s: string | number = 0;
+	let session = "AM"
+
+	if (location != 'London') {
+		let date = new Date();
+	
+		h = date.getHours(); // 0 - 23
+		m = date.getMinutes(); // 0 - 59
+		s = date.getSeconds(); // 0 - 59
+		session = "AM";
+	} else {
+		const time = moment().tz('Europe/London');
+		h = Number(time.format('hh'));
+		m = Number(time.format('mm'));
+		s = Number(time.format('ss'));
+	}
+
 	
 	if(h == 0){
 		h = 12;
