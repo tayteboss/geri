@@ -24,8 +24,8 @@ const MenuWrapper = styled.div`
 `;
 
 type propsType = {
-	handleCursorUpdate: () => void
-}
+	handleCursorUpdate: () => void;
+};
 
 const Menu = ({ handleCursorUpdate }: propsType) => {
 	const activeLink: string = useActiveLink();
@@ -36,7 +36,7 @@ const Menu = ({ handleCursorUpdate }: propsType) => {
 		setTimeout(() => {
 			handleCursorUpdate();
 		}, 500);
-	}
+	};
 
 	return (
 		<MenuWrapper onClick={() => handleClick()}>
@@ -54,6 +54,11 @@ const Menu = ({ handleCursorUpdate }: propsType) => {
 				title="Information"
 				link="/information"
 				isActiveLink={activeLink === 'Information'}
+			/>
+			<PrimaryLink
+				title="Press & Interviews"
+				link="/press"
+				isActiveLink={activeLink === 'Press'}
 			/>
 		</MenuWrapper>
 	);

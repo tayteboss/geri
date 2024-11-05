@@ -4,6 +4,7 @@ import PAGE_QUERY from './queries/page';
 import SITE_QUERY from './queries/siteData';
 import FEATURED_PROJECTS_QUERY from './queries/featuredProjects';
 import INDEX_PROJECTS_QUERY from './queries/indexProjects';
+import ALL_PRESS_QUERY from './queries/allPress';
 
 type Request = {
 	query: string;
@@ -17,8 +18,8 @@ const request = ({ query, variables, preview }: Request) => {
 		: `https://graphql.datocms.com/`;
 	const client = new GraphQLClient(endpoint, {
 		headers: {
-			authorization: `Bearer ${process.env.DATOCMS_API_TOKEN}`,
-		},
+			authorization: `Bearer ${process.env.DATOCMS_API_TOKEN}`
+		}
 	});
 	return client.request(query, variables);
 };
@@ -41,6 +42,16 @@ export const getFeaturedProjects = async () => {
 	});
 
 	return data?.allFeaturedProjects;
+};
+
+export const getAllPress = async () => {
+	const data = await request({
+		query: ALL_PRESS_QUERY,
+		variables: {},
+		preview: false
+	});
+
+	return data?.allPresses;
 };
 
 export const getIndexProjects = async () => {
@@ -67,7 +78,7 @@ export const getPage = async (pageSlug: string, preview: boolean) => {
 	const data = await request({
 		query: PAGE_QUERY,
 		variables: { pageSlug },
-		preview,
+		preview
 	});
 
 	return data;

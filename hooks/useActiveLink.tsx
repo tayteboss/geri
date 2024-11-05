@@ -12,6 +12,8 @@ const useActiveLink = (): string => {
 			setActiveLink('Index');
 		} else if (router.pathname === '/information') {
 			setActiveLink('Information');
+		} else if (router.pathname === '/press') {
+			setActiveLink('Press');
 		} else {
 			setActiveLink('');
 		}

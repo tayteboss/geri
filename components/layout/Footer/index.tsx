@@ -5,7 +5,7 @@ import FooterInformation from './FooterInformation';
 import pxToRem from '../../../utils/pxToRem';
 
 const FooterWrapper = styled.footer`
-	margin-bottom: ${pxToRem(160)};
+	margin-bottom: ${pxToRem(180)};
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
 		padding: 0 ${pxToRem(8)};
@@ -18,23 +18,19 @@ const FooterWrapper = styled.footer`
 
 type Props = {
 	showInfo: boolean;
-}
+};
 
 const Footer = (props: Props) => {
-	const {
-		showInfo
-	} = props;
+	const { showInfo } = props;
 
 	return (
 		<FooterWrapper>
 			<LayoutGrid>
-				{showInfo && (
-					<FooterInformation />
-				)}
+				{showInfo && <FooterInformation />}
 				<FooterSecondary />
 			</LayoutGrid>
 		</FooterWrapper>
-	)
+	);
 };
 
 export default Footer;

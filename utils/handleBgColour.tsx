@@ -17,7 +17,7 @@ const handleBgColour = (url: string): void => {
 			'--fg',
 			`var(--colour-black)`
 		);
-	} else if (url === '/information') {
+	} else if (url === '/information' || url === '/press') {
 		document.documentElement.style.setProperty(
 			'--bg',
 			`var(--colour-white)`
