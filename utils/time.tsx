@@ -1,40 +1,32 @@
-import moment from "moment-timezone";
+import moment from 'moment-timezone';
 
 const startTime = (location: string): string => {
 	let h: string | number = 0;
 	let m: string | number = 0;
 	let s: string | number = 0;
-	let session = "AM"
+	let session = 'AM';
 
-	if (location != 'London') {
-		let date = new Date();
-	
-		h = date.getHours(); // 0 - 23
-		m = date.getMinutes(); // 0 - 59
-		s = date.getSeconds(); // 0 - 59
-		session = "AM";
-	} else {
-		const time = moment().tz('Europe/London');
-		h = Number(time.format('hh'));
-		m = Number(time.format('mm'));
-		s = Number(time.format('ss'));
-	}
+	let date = new Date();
 
-	
-	if(h == 0){
+	h = date.getHours(); // 0 - 23
+	m = date.getMinutes(); // 0 - 59
+	s = date.getSeconds(); // 0 - 59
+
+	session = h >= 12 ? 'PM' : 'AM';
+
+	if (h == 0) {
 		h = 12;
 	}
-	
-	if(h > 12){
+
+	if (h > 12) {
 		h = h - 12;
-		session = "PM";
 	}
-	
-	h = (h < 10) ? "0" + h : h;
-	m = (m < 10) ? "0" + m : m;
-	s = (s < 10) ? "0" + s : s;
-	
-	let time = h + ":" + m + ":" + s + " " + session;
+
+	h = h < 10 ? '0' + h : h;
+	m = m < 10 ? '0' + m : m;
+	s = s < 10 ? '0' + s : s;
+
+	let time = h + ':' + m + ':' + s + ' ' + session;
 
 	return time;
 };
