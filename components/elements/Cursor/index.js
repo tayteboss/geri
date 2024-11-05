@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { useMousePosition } from '../../../hooks/useMousePosition';
 
 const CursorWrapper = styled.div`
-	mix-blend-mode: difference;
+	mix-blend-mode: normal;
 	height: 27px;
 	width: 27px;
 	z-index: 1000;
