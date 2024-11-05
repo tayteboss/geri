@@ -32,8 +32,6 @@ const PressArticles = (props: any) => {
 
 	const hasData = data?.length > 0;
 
-	console.log('data', data);
-
 	return (
 		<PressArticlesWrapper>
 			<PressWrapper>

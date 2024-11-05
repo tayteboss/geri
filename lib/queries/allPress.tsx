@@ -1,5 +1,5 @@
 const ALL_PRESS_QUERY: string = `query Query {
-	allPresses {
+	allPresses(first: 100) {
 		title
 		excerpt
 		image {
