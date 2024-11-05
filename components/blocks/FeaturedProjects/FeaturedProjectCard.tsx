@@ -10,7 +10,7 @@ import Cookies from 'js-cookie';
 
 type StyledProps = {
 	$isMarquee?: boolean;
-}
+};
 
 const DesktopCheck = styled.div`
 	@media ${(props) => props.theme.mediaBreakpoints.tabletPortrait} {
@@ -57,8 +57,12 @@ const ClientWrapper = styled.div`
 		right: 0;
 		height: 100%;
 		width: ${pxToRem(50)};
-		background: rgb(0,0,0);
-		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+		background: rgb(0, 0, 0);
+		background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 1) 100%
+		);
 	}
 
 	@media ${(props) => props.theme.mediaBreakpoints.tabletLandscape} {
@@ -71,7 +75,7 @@ const ClientInner = styled.div``;
 const Client = styled.div<StyledProps>`
 	padding: 0 ${pxToRem(16)};
 	overflow: hidden;
-	display: ${(props) => props.$isMarquee ? 'inline-block' : 'inline'};
+	display: ${(props) => (props.$isMarquee ? 'inline-block' : 'inline')};
 	white-space: nowrap;
 	width: 100%;
 
@@ -91,8 +95,12 @@ const TitleWrapper = styled.div`
 		right: 0;
 		height: 100%;
 		width: ${pxToRem(50)};
-		background: rgb(0,0,0);
-		background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%);
+		background: rgb(0, 0, 0);
+		background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0) 0%,
+			rgba(0, 0, 0, 1) 100%
+		);
 	}
 `;
 
@@ -100,7 +108,7 @@ const TitleInner = styled.div``;
 
 const Title = styled.div<StyledProps>`
 	padding: 0 ${pxToRem(16)};
-	display: ${(props) => props.$isMarquee ? 'inline-block' : 'inline'};
+	display: ${(props) => (props.$isMarquee ? 'inline-block' : 'inline')};
 	overflow: hidden;
 	white-space: nowrap;
 	width: 100%;
@@ -117,12 +125,13 @@ const MobileFeaturedProjectCardWrapper = styled.a`
 		text-decoration: none;
 		display: flex;
 
-		&:hover, &:active {
+		&:hover,
+		&:active {
 			opacity: 1 !important;
-	
+
 			.featured-client,
 			.featured-title {
-				background: var(--colour-red);
+				background: var(--colour-site-colour);
 				color: var(--colour-black);
 				border-radius: 100px;
 			}
@@ -143,12 +152,10 @@ const MobileClient = styled.div`
 
 type Props = {
 	data: FeaturedProjectsType;
-}
+};
 
 const FeaturedProjectCard = (props: Props) => {
-	const {
-		data
-	} = props;
+	const { data } = props;
 
 	const loadingStringOne = 'Geri Edits Films Geri';
 	const loadingStringTwo = 'Edits Films Geri Edits';
@@ -161,7 +168,9 @@ const FeaturedProjectCard = (props: Props) => {
 	const [outerHover, setOuterHover] = useState<boolean>(false);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const [loadingString, setLoadingString] = useState<string>('');
-	const [mobileLoadingString] = useState<string>('Geri Edits Films Geri Edits Films');
+	const [mobileLoadingString] = useState<string>(
+		'Geri Edits Films Geri Edits Films'
+	);
 
 	const { setPreviewData } = useContext(PreviewContext);
 
@@ -266,9 +275,13 @@ const FeaturedProjectCard = (props: Props) => {
 													<Client
 														className="type-large"
 														ref={clientContainerRef}
-														$isMarquee={useClientMarquee}
+														$isMarquee={
+															useClientMarquee
+														}
 													>
-														{isLoading ? loadingString : data?.client}
+														{isLoading
+															? loadingString
+															: data?.client}
 													</Client>
 												</Marquee>
 											)}
@@ -283,7 +296,9 @@ const FeaturedProjectCard = (props: Props) => {
 												ref={clientContainerRef}
 												$isMarquee={useClientMarquee}
 											>
-												{isLoading ? loadingString : data?.client}
+												{isLoading
+													? loadingString
+													: data?.client}
 											</Client>
 										)}
 									</ClientWrapper>
@@ -301,7 +316,9 @@ const FeaturedProjectCard = (props: Props) => {
 										ref={clientContainerRef}
 										$isMarquee={useClientMarquee}
 									>
-										{isLoading ? loadingString : data?.client}
+										{isLoading
+											? loadingString
+											: data?.client}
 									</Client>
 								)}
 							</ClientWrapper>
@@ -323,9 +340,13 @@ const FeaturedProjectCard = (props: Props) => {
 													<Title
 														className="type-large"
 														ref={titleContainerRef}
-														$isMarquee={useTitleMarquee}
+														$isMarquee={
+															useTitleMarquee
+														}
 													>
-														{isLoading ? loadingString : data?.title}
+														{isLoading
+															? loadingString
+															: data?.title}
 													</Title>
 												</Marquee>
 											)}
@@ -340,7 +361,9 @@ const FeaturedProjectCard = (props: Props) => {
 												ref={titleContainerRef}
 												$isMarquee={useTitleMarquee}
 											>
-												{isLoading ? loadingString : data?.title}
+												{isLoading
+													? loadingString
+													: data?.title}
 											</Title>
 										)}
 									</TitleWrapper>
@@ -358,7 +381,9 @@ const FeaturedProjectCard = (props: Props) => {
 										ref={titleContainerRef}
 										$isMarquee={useTitleMarquee}
 									>
-										{isLoading ? loadingString : data?.title}
+										{isLoading
+											? loadingString
+											: data?.title}
 									</Title>
 								)}
 							</TitleWrapper>
@@ -371,22 +396,25 @@ const FeaturedProjectCard = (props: Props) => {
 					<MobileFeaturedProjectCardWrapper target="_blank">
 						<MobileTitleWrapper>
 							{useMobileMarquee && (
-								<Marquee
-									gradient={false}
-									speed={30}
-								>
+								<Marquee gradient={false} speed={30}>
 									<MobileClient
 										className="type-large"
 										ref={mobileContainerRef}
 									>
-										{isLoading ? mobileLoadingString : data?.client}
+										{isLoading
+											? mobileLoadingString
+											: data?.client}
 									</MobileClient>
 								</Marquee>
 							)}
 							{!useMobileMarquee && (
 								<MobileClient
-									className="type-large"ref={mobileContainerRef}>
-									{isLoading ? mobileLoadingString : data?.client}
+									className="type-large"
+									ref={mobileContainerRef}
+								>
+									{isLoading
+										? mobileLoadingString
+										: data?.client}
 								</MobileClient>
 							)}
 						</MobileTitleWrapper>

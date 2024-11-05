@@ -7,8 +7,8 @@ import PrimaryLink from '../../elements/PrimaryLink';
 import { useClickOutside } from '../../../hooks/useClickOutside';
 
 type StyledProps = {
-	$hasProjects: boolean
-}
+	$hasProjects: boolean;
+};
 
 const IndexClientCardWrapper = styled(motion.div)<StyledProps>`
 	display: flex;
@@ -22,7 +22,7 @@ const IndexClientCardWrapper = styled(motion.div)<StyledProps>`
 	}
 
 	&.active {
-		opacity: ${(props) => props.$isActive ? 1 : 0.4} !important;
+		opacity: ${(props) => (props.$isActive ? 1 : 0.4)} !important;
 	}
 `;
 
@@ -54,7 +54,7 @@ const ClientProjectsWrapper = styled(motion.div)`
 		display: block;
 		white-space: nowrap;
 		margin-bottom: ${pxToRem(4)};
-		background: var(--colour-red);
+		background: var(--colour-site-colour);
 		font-size: ${(props) => props.theme.size.small};
 		position: relative;
 		z-index: 2;
@@ -126,14 +126,11 @@ const childVariants = {
 
 type Props = {
 	name: string;
-	projects?: []
+	projects?: [];
 };
 
 const IndexClientCard = (props: Props) => {
-	const {
-		name,
-		projects
-	} = props;
+	const { name, projects } = props;
 
 	const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -148,16 +145,15 @@ const IndexClientCard = (props: Props) => {
 		const cards = document.querySelectorAll('.index-client-card');
 
 		if (isActive) {
-			cards.forEach(card => {
+			cards.forEach((card) => {
 				card.classList.add('active');
 			});
 		} else {
-			cards.forEach(card => {
+			cards.forEach((card) => {
 				card.classList.remove('active');
 			});
 		}
 	}, [isActive]);
-	
 
 	return (
 		<IndexClientCardWrapper
@@ -173,20 +169,29 @@ const IndexClientCard = (props: Props) => {
 					{name && name}
 				</ClientStatic>
 				<AnimatePresence>
-					{(isActive && hasProjects) && (
+					{isActive && hasProjects && (
 						<ClientProjectsWrapper
 							variants={wrapperVariants}
-							initial='hidden'
-							animate='visible'
-							exit='hidden'
+							initial="hidden"
+							animate="visible"
+							exit="hidden"
 						>
-							{hasProjects && projects.map((item: {title: string; link: string}, i: number) => (
-								<motion.div
-									variants={childVariants}
-								>
-									<PrimaryLink title={item.title} link={item.link} target="_blank" key={i} />
-								</motion.div>
-							))}
+							{hasProjects &&
+								projects.map(
+									(
+										item: { title: string; link: string },
+										i: number
+									) => (
+										<motion.div variants={childVariants}>
+											<PrimaryLink
+												title={item.title}
+												link={item.link}
+												target="_blank"
+												key={i}
+											/>
+										</motion.div>
+									)
+								)}
 						</ClientProjectsWrapper>
 					)}
 				</AnimatePresence>

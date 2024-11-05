@@ -45,11 +45,14 @@ const getSiteData = async () => {
 					url
 				}
 				location
+				siteColour {
+					hex
+				}
 			}
 		}
 	`;
 	const data = await fetchAPI(query);
-	if (data.length <= 0) {
+	if (data?.length <= 0) {
 		return [];
 	}
 	return data?.siteInformation;

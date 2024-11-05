@@ -12,9 +12,11 @@ import handleBgColour from '../utils/handleBgColour';
 import { Transitions } from '../shared/types/types';
 import LoadingCover from '../components/blocks/LoadingCover';
 
+const siteOptions = require('../json/siteData.json');
+
 const pageTransitionVariants: Transitions = {
 	hidden: { opacity: 0, transition: { duration: 0.2 } },
-	visible: { opacity: 1, transition: { duration: 0.2 } },
+	visible: { opacity: 1, transition: { duration: 0.2 } }
 };
 
 type Props = {
@@ -23,15 +25,12 @@ type Props = {
 };
 
 const App = (props: Props) => {
-	const {
-		Component,
-		pageProps
-	} = props;
+	const { Component, pageProps } = props;
 
 	const [hasVisited, setHasVisited] = useState<boolean>(false);
 	const [appCursorRefresh, setAppCursorRefresh] = useState<number>(0);
 
-	const router= useRouter();
+	const router = useRouter();
 	const routerEvents = router.events;
 
 	const handleExitComplete = (): void => {
@@ -39,6 +38,14 @@ const App = (props: Props) => {
 	};
 
 	use1vh();
+
+	useEffect(() => {
+		const siteColour = siteOptions.siteColour.hex;
+		document.documentElement.style.setProperty(
+			'--colour-site-colour',
+			siteColour
+		);
+	}, [siteOptions]);
 
 	useEffect(() => {
 		routerEvents.on('routeChangeComplete', (url) => {
@@ -61,7 +68,7 @@ const App = (props: Props) => {
 
 		return () => {
 			clearTimeout(timer);
-		}
+		};
 	}, []);
 
 	const handleCursorRefresh = () => {
@@ -73,9 +80,7 @@ const App = (props: Props) => {
 			<LoadingCover />
 			<GlobalStyles />
 			<ThemeProvider theme={theme}>
-				<Layout
-					appCursorRefresh={appCursorRefresh}
-				>
+				<Layout appCursorRefresh={appCursorRefresh}>
 					<AnimatePresence
 						mode="wait"
 						onExitComplete={() => handleExitComplete()}
@@ -91,6 +96,6 @@ const App = (props: Props) => {
 			</ThemeProvider>
 		</>
 	);
-}
+};
 
 export default App;

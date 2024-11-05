@@ -5,7 +5,7 @@ export const GlobalStyles = createGlobalStyle`
 	:root {
 		--colour-white: ${theme.colours.white};
 		--colour-black: ${theme.colours.black};
-		--colour-red: ${theme.colours.red};
+		--colour-site-colour: #1338BE;
 		--font-default: ${theme.fonts.default};
 		--font-light: ${theme.fonts.light};
 		--transition-speed-default: ${theme.transitionSpeed.default};
@@ -32,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
 	}
 
 	::selection {
-		background-color: red;
+		background-color: var(--colour-site-colour);
 		color: black;
 	}
 
