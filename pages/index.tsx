@@ -13,7 +13,7 @@ type Props = {
 	siteData: {
 		seoDescription: string;
 		seoImage: {
-			url: string
+			url: string;
 		};
 	};
 	featuredProjects: [];
@@ -21,45 +21,52 @@ type Props = {
 };
 
 const Page = (props: Props) => {
-	const {
-		siteData,
-		featuredProjects,
-		pageTransitionVariants
-	} = props;
+	const { siteData, featuredProjects, pageTransitionVariants } = props;
 
 	return (
-	<PageWrapper
-		variants={pageTransitionVariants}
-		initial='hidden'
-		animate='visible'
-		exit='hidden'
-	>
-		<NextSeo
-			title="Geri Edits Films"
-			description={siteData?.seoDescription}
-			openGraph={{
-				images: [
-					{
-						url: siteData?.seoImage?.url,
-						width: 1200,
-						height: 630,
-					},
-				],
-			}}
-		/>
-		<Head>
-			<link rel="apple-touch-icon" sizes="180x180" href={`/favicon/black/apple-touch-icon.png`} />
-			<link rel="icon" type="image/png" sizes="32x32" href={`/favicon/black/favicon-32x32.png`} />
-			<link rel="icon" type="image/png" sizes="16x16" href={`/favicon/black/favicon-16x16.png`} />
-			<link rel="manifest" href={`/favicon/black/site.webmanifest`} />
-			<link rel="shortcut icon" href={`/favicon/black/favicon.ico`} />
-			<meta name="msapplication-config" content={`/favicon/black/browserconfig.xml`} />
-			<meta name="theme-color" content="#ffffff" />
-		</Head>
-		<PreviewContextWrapper>
-			<FeaturedProjects data={featuredProjects} />
-		</PreviewContextWrapper>
-	</PageWrapper>
+		<PageWrapper
+			variants={pageTransitionVariants}
+			initial="hidden"
+			animate="visible"
+			exit="hidden"
+		>
+			<NextSeo
+				title="Geri Edits Films"
+				description={siteData?.seoDescription}
+				openGraph={{
+					images: [
+						{
+							url: siteData?.seoImage?.url,
+							width: 1200,
+							height: 630
+						}
+					]
+				}}
+			/>
+			<Head>
+				<link
+					rel="icon"
+					type="image/png"
+					href="favicon/favicon-96x96.png"
+					sizes="96x96"
+				/>
+				<link
+					rel="icon"
+					type="image/svg+xml"
+					href="favicon/favicon.svg"
+				/>
+				<link rel="shortcut icon" href="favicon/favicon.ico" />
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="favicon/apple-touch-icon.png"
+				/>
+				<link rel="manifest" href="favicon/site.webmanifest" />
+			</Head>
+			<PreviewContextWrapper>
+				<FeaturedProjects data={featuredProjects} />
+			</PreviewContextWrapper>
+		</PageWrapper>
 	);
 };
 
@@ -67,13 +74,15 @@ export async function getStaticProps() {
 	const siteData = await getSiteData();
 	const featuredProjects = await getFeaturedProjects();
 
-	featuredProjects.sort((a: { client: string }, b: { client: string }) => a.client.localeCompare(b.client));
+	featuredProjects.sort((a: { client: string }, b: { client: string }) =>
+		a.client.localeCompare(b.client)
+	);
 
 	return {
 		props: {
 			siteData,
-			featuredProjects,
-		},
+			featuredProjects
+		}
 	};
 }
 

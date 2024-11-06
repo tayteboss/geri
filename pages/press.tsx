@@ -44,29 +44,23 @@ const Page = (props: Props) => {
 			/>
 			<Head>
 				<link
+					rel="icon"
+					type="image/png"
+					href="favicon/favicon-96x96.png"
+					sizes="96x96"
+				/>
+				<link
+					rel="icon"
+					type="image/svg+xml"
+					href="favicon/favicon.svg"
+				/>
+				<link rel="shortcut icon" href="favicon/favicon.ico" />
+				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href={`/favicon/black/apple-touch-icon.png`}
+					href="favicon/apple-touch-icon.png"
 				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="32x32"
-					href={`/favicon/black/favicon-32x32.png`}
-				/>
-				<link
-					rel="icon"
-					type="image/png"
-					sizes="16x16"
-					href={`/favicon/black/favicon-16x16.png`}
-				/>
-				<link rel="manifest" href={`/favicon/black/site.webmanifest`} />
-				<link rel="shortcut icon" href={`/favicon/black/favicon.ico`} />
-				<meta
-					name="msapplication-config"
-					content={`/favicon/black/browserconfig.xml`}
-				/>
-				<meta name="theme-color" content="#ffffff" />
+				<link rel="manifest" href="favicon/site.webmanifest" />
 			</Head>
 			<PressArticles data={pressArticles} />
 		</PageWrapper>

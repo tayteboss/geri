@@ -14,7 +14,7 @@ type Props = {
 	siteData: {
 		seoDescription: string;
 		seoImage: {
-			url: string
+			url: string;
 		};
 	};
 	indexProjects: [];
@@ -22,44 +22,51 @@ type Props = {
 };
 
 const Page = (props: Props) => {
-	const {
-		siteData,
-		indexProjects,
-		pageTransitionVariants
-	} = props;
+	const { siteData, indexProjects, pageTransitionVariants } = props;
 
 	return (
-	<PageWrapper
-		variants={pageTransitionVariants}
-		initial='hidden'
-		animate='visible'
-		exit='hidden'
-	>
-		<NextSeo
-			title="Geri Edits Films - Index"
-			description={siteData?.seoDescription}
-			openGraph={{
-				images: [
-					{
-						url: siteData?.seoImage?.url,
-						width: 1200,
-						height: 630,
-					},
-				],
-			}}
-		/>
-		<Head>
-			<link rel="apple-touch-icon" sizes="180x180" href={`/favicon/red/apple-touch-icon.png`} />
-			<link rel="icon" type="image/png" sizes="32x32" href={`/favicon/red/favicon-32x32.png`} />
-			<link rel="icon" type="image/png" sizes="16x16" href={`/favicon/red/favicon-16x16.png`} />
-			<link rel="manifest" href={`/favicon/red/site.webmanifest`} />
-			<link rel="shortcut icon" href={`/favicon/red/favicon.ico`} />
-			<meta name="msapplication-config" content={`/favicon/red/browserconfig.xml`} />
-			<meta name="theme-color" content="#ffffff" />
-		</Head>
-		<IndexProjects data={indexProjects} />
-		<Footer showInfo />
-	</PageWrapper>
+		<PageWrapper
+			variants={pageTransitionVariants}
+			initial="hidden"
+			animate="visible"
+			exit="hidden"
+		>
+			<NextSeo
+				title="Geri Edits Films - Index"
+				description={siteData?.seoDescription}
+				openGraph={{
+					images: [
+						{
+							url: siteData?.seoImage?.url,
+							width: 1200,
+							height: 630
+						}
+					]
+				}}
+			/>
+			<Head>
+				<link
+					rel="icon"
+					type="image/png"
+					href="favicon/favicon-96x96.png"
+					sizes="96x96"
+				/>
+				<link
+					rel="icon"
+					type="image/svg+xml"
+					href="favicon/favicon.svg"
+				/>
+				<link rel="shortcut icon" href="favicon/favicon.ico" />
+				<link
+					rel="apple-touch-icon"
+					sizes="180x180"
+					href="favicon/apple-touch-icon.png"
+				/>
+				<link rel="manifest" href="favicon/site.webmanifest" />
+			</Head>
+			<IndexProjects data={indexProjects} />
+			<Footer showInfo />
+		</PageWrapper>
 	);
 };
 
@@ -93,7 +100,7 @@ export async function getStaticProps() {
 		W: { letter: 'W', client: [] },
 		X: { letter: 'X', client: [] },
 		Y: { letter: 'Y', client: [] },
-		Z: { letter: 'Z', client: [] },
+		Z: { letter: 'Z', client: [] }
 	};
 
 	rawIndexProjects.forEach((item: { client: string }) => {
@@ -116,8 +123,8 @@ export async function getStaticProps() {
 	return {
 		props: {
 			siteData,
-			indexProjects,
-		},
+			indexProjects
+		}
 	};
 }
 
