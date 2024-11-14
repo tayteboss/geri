@@ -1,6 +1,7 @@
 import { NextSeo } from 'next-seo';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { useRouter } from 'next/router';
 
 export default class CustomDocument extends Document {
 	static async getInitialProps(ctx) {
@@ -37,9 +38,9 @@ export default class CustomDocument extends Document {
 					openGraph={{
 						images: [
 							{
-								url: '/og.jpg',
+								url: '/file-path.jpg',
 								width: 1200,
-								height: 630,
+								height: 627,
 							},
 						],
 					}}
