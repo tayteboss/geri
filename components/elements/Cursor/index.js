@@ -41,8 +41,8 @@ const Cursor = ({ cursorRefresh }) => {
 	const [isHoveringLink, setIsHoveringLink] = useState(false);
 	const [hideCursor, setHideCursor] = useState(false);
 	const [isOnDevice, setIsOnDevice] = useState(false);
-	const position = useMousePosition();
 	const router = useRouter();
+	const position = useMousePosition();
 
 	const mouseXPosition = position.x;
 	const mouseYPosition = position.y;

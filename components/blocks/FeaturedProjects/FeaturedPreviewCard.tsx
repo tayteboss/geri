@@ -50,16 +50,16 @@ const wrapperVariants: {} = {
 		opacity: 0,
 		transition: {
 			duration: 0.2,
-			ease: 'easeInOut',
-		},
+			ease: 'easeInOut'
+		}
 	},
 	visible: {
 		opacity: 1,
 		transition: {
 			duration: 0.2,
-			ease: 'easeInOut',
-		},
-	},
+			ease: 'easeInOut'
+		}
+	}
 };
 
 const childVariants: {} = {
@@ -67,8 +67,8 @@ const childVariants: {} = {
 		opacity: 0,
 		transition: {
 			duration: 0.1,
-			ease: 'easeInOut',
-		},
+			ease: 'easeInOut'
+		}
 	},
 	visible: {
 		opacity: [1, 0],
@@ -76,9 +76,9 @@ const childVariants: {} = {
 			duration: 0.6,
 			ease: 'easeInOut',
 			repeat: 'Infinity',
-			repeatType: 'mirror',
-		},
-	},
+			repeatType: 'mirror'
+		}
+	}
 };
 
 const FeaturedPreviewCard = () => {
@@ -95,9 +95,9 @@ const FeaturedPreviewCard = () => {
 			{previewData && (
 				<FeaturedPreviewCardWrapper
 					variants={wrapperVariants}
-					initial='hidden'
-					animate='visible'
-					exit='hidden'
+					initial="hidden"
+					animate="visible"
+					exit="hidden"
 				>
 					<VideoComponentWrapper className="video-component-wrapper">
 						{previewData && (
@@ -127,11 +127,15 @@ const FeaturedPreviewCard = () => {
 									ref={videoRef}
 									preload="auto"
 									onLoadedData={() => setIsLoading(false)}
-									poster={previewData[0].placeholderImage?.url}
+									poster={
+										previewData[0].placeholderImage?.url
+									}
 									key={previewData[0].placeholderImage?.url}
 								>
-									<source src={previewData[0].webmVideoFile?.url} type="video/webm" />
-									<source src={previewData[0].mp4VideoFile?.url} type="video/mp4" />
+									<source
+										src={previewData[0].mp4VideoFile?.url}
+										type="video/mp4"
+									/>
 								</Video>
 							</>
 						)}
